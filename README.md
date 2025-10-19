@@ -7,6 +7,7 @@ O **Sistema de Reserva de Salas** tem como objetivo otimizar a gestão e utiliza
 - `api/` : código-fonte da API Spring Boot, incluindo controllers, services, repositories e configuração do projeto.
 - `requisitos/` : documentos contendo os requisitos funcionais, não funcionais e regras de negócio.
 - `modelagem de dados/` : diagramas e esquemas da modelagem de dados
+- `docs/` : documentação do projeto
 
 ## Próximos passos
 
