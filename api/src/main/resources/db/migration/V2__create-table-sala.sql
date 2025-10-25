@@ -1,0 +1,7 @@
+CREATE TABLE Sala (
+    id_sala INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(250) NOT NULL,
+    capacidade INT NOT NULL,
+    recursos VARCHAR(250) NOT NULL,
+    status ENUM('Ativa', 'Inativa') NOT NULL
+);
