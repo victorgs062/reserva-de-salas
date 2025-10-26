@@ -5,9 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ReservaDeSalasApiApplication {
-
 	public static void main(String[] args) {
+
 		SpringApplication.run(ReservaDeSalasApiApplication.class, args);
+
 	}
 
 }
