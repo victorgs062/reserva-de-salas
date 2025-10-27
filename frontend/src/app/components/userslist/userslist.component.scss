@@ -1,0 +1,132 @@
+
+.tabela {
+  margin-top: 10vh;
+  width: 80%;
+  box-shadow: 0.5px 0.5px 5px rgba(0, 0, 0, 0.308);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow-x: auto; /* permite rolagem no mobile */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+    background-color: white;
+    display: flex;
+    // align-items: center;
+    justify-content: end;
+    padding: 15px;
+    gap: 10px;
+    
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 12px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+  .tabela {
+    width: 95%;
+  }
+
+  .input {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+
+//   .new {
+//     margin-right: 0;
+//   }
+}
+
+@media (max-width: 768px) {
+  .tabela {
+    width: 100%;
+    margin-top: 5vh;
+    box-shadow: none;
+  }
+
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table th,
+  .table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+    .fab-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+    background-color: #212529;
+    color: #fff;
+  }
+}
+
+@media (max-width: 480px) {
+  .input {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .table th,
+  .table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
+
+
+/* Botão flutuante (FAB) */
+.fab-btn {
+  position: absolute;
+  background-color: #212529;
+  color: rgb(244, 244, 244);
+  right: 20px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.fab-btn:hover {
+  transform: scale(1.1);
+}
+
+
+

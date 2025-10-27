@@ -1,0 +1,65 @@
+
+<div class="container">
+
+    <div class="tabela"> 
+        
+        <div class="input">
+                <!-- <button [routerLink]="['/admin/room/new']" class="btn btn-outline-dark new"><i class="fas fa-plus"></i></button> -->
+
+            <mdb-form-control style="width: 200px;">
+                <input mdbInput type="number" id="typeText" class="form-control"  [(ngModel)]="IdBusca"/>
+                <label mdbLabel class="form-label" for="typeText">ID da sala</label>
+            </mdb-form-control>
+            <button (click)="Buscar()" class="btn btn-dark " mdbRipple><i class="fas fa-search"></i></button>  
+            
+
+        </div>
+
+
+        <table class="table align-middle mb-0">
+        <thead>
+            <tr> 
+                <th>id</th>
+                <th>numero</th>
+                <th>Bloco</th>
+                <th>Capacidade</th>
+                <th>Locada</th>
+                <th class="text-center">Ações</th> <!-- Centraliza o título -->
+            </tr>
+        </thead>
+        <tbody>
+            @for (room of lista; track $index){
+            <tr>
+            
+                <td>{{room.id}}</td>
+                <td>{{room.number}}</td>
+                <td>{{room.block}}</td>
+                <td>
+                    <!-- <div class="d-flex align-items-center">
+
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1"></p>
+                    </div>
+                    </div> -->
+                    {{room.capacity}}
+                </td>
+                    <td>{{room.rent}}</td>                  
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-success me-1" mdbRipple [routerLink]="['/admin/room/reserva', room.id]">Reservar</button>
+                        <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/edit/', room.id]"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-outline-danger" mdbRipple (click)="delete(room)"><i class="fas fa-trash"></i></button>
+                    </td>    
+            
+                   
+            </tr>
+            }
+
+
+            </tbody>
+
+        </table>
+        <button [routerLink]="['/admin/room/new']" class="btn btn-dark fab-btn" mdbRipple>
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</div>

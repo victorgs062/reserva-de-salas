@@ -1,0 +1,107 @@
+<!-- 
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="   https://cdn-icons-png.flaticon.com/512/1144/1144760.png "
+        alt="Trendy Pants and Shoes"
+        class="img-fluid rounded-start"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Perfil</h5>
+
+
+        <div class="input-group mb-3">
+             <span class="input-group-text" id="basic-addon1"></span> 
+            <input type="text" class="form-control" placeholder="Nome completo" aria-label="Nome completo" aria-describedby="basic-addon1" />
+            </div>
+            <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Email" aria-label="Email"
+                aria-describedby="basic-addon2" />
+            <span class="input-group-text" id="basic-addon2">&#64;example.com</span>
+            </div>
+            
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Senha</span>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
+            </div>
+<hr>        
+            <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+            <a class="nav-link text-black" [routerLink]="['/']">
+                <i class="fas fa-sign-in-alt me-2"></i> Logout
+            </a>
+            </li>
+            </ul>
+  
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+
+ <div class="perfil-container d-flex justify-content-center align-items-center">
+  <div class="card perfil-card shadow-5 border-0">
+    <div class="perfil-header text-center">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+        alt="Foto de perfil"
+        class="perfil-foto"
+      />
+      <h5 class="mt-0 mb-0 fw-bold">Perfil do Usuário</h5>
+      <p class="text-muted">Gerencie suas informações pessoais</p>
+    </div>
+
+    <div class="card-body">
+      <div class="mb-3">
+        <label class="form-label">Nome completo</label>
+        <input
+          type="text"
+          class="form-control form-control-lg"
+          placeholder="Digite seu nome"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <div class="input-group input-group-lg">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="exemplo"
+            aria-label="Email"
+          />
+          <span class="input-group-text">&#64;example.com</span>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Senha</label>
+        <input
+          type="password"
+          class="form-control form-control-lg"
+          
+        />
+      </div>
+
+      <div class="d-grid">
+        <button class="btn btn-primary btn-lg rounded-pill">
+          Salvar alterações
+        </button>
+      </div>
+
+      <hr class="my-4" />
+
+      <div class="text-center">
+        <a class="nav-link text-danger" [routerLink]="['/']">
+          <i class="fas fa-sign-out-alt me-2"></i> Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

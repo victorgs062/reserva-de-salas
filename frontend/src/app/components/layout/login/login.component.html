@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card shadow-4" style="width: 380px;">
+    <div class="card-body text-center p-5">
+      <h4 class="mb-4">UniSalas</h4>
+
+      <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+        <!-- E-mail -->
+        <mdb-form-control class="mb-4 w-100">
+          <input
+            mdbInput
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            required
+            [(ngModel)]="email"
+            #emailCtrl="ngModel"
+          />
+          <label mdbLabel for="email" class="form-label">E-mail</label>
+        </mdb-form-control>
+
+        <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="text-danger small mb-2">
+          <div *ngIf="emailCtrl.errors?.['required']">O e-mail é obrigatório.</div>
+          <div *ngIf="emailCtrl.errors?.['email']">Digite um e-mail válido.</div>
+        </div>
+
+        <!-- Senha -->
+        <mdb-form-control class="mb-4 w-100">
+          <input
+            mdbInput
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            required
+            [(ngModel)]="password"
+          />
+          <label mdbLabel for="password" class="form-label">Senha</label>
+        </mdb-form-control>
+
+        <!-- Botão -->
+        <!-- <button
+          mdbBtn
+          color="primary"
+          class="w-100 mb-3"
+          type="submit"
+          [disabled]="!loginForm.form.valid"
+        >
+          Entrar
+        </button> -->
+        <input class="btn btn-danger w-100 mb-3" type="submit" value="Login" mdbRipple />
+
+        <small class="text-muted">
+          Esqueceu a senha? <a href="#" class="text-primary">Recuperar</a>
+        </small>
+      </form>
+    </div>
+  </div>
+</div>

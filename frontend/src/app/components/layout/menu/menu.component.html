@@ -1,0 +1,62 @@
+<!-- Botão de menu visível apenas em telas pequenas -->
+<button
+  class="btn btn-dark d-lg-none m-2"
+  type="button"
+  (click)="toggleMobileSidebar()"
+>
+  <i class="fas fa-bars"></i>
+</button>
+
+<!-- Sidebar -->
+<div
+  class="sidebar bg-dark text-white vh-100 p-3"
+
+  [class.show-mobile]="mobileOpen"
+>
+  <h4 class="text-center mb-4">Unisalas</h4>
+
+  <ul class="nav flex-column">
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" [routerLink]="['/admin/']" (click)="closeMobileSidebar()">
+        <i class="fas fa-home me-2"></i> Início
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" [routerLink]="['/admin/room']" (click)="closeMobileSidebar()">
+        <i class="fas fa-door-open me-2"></i> Salas
+      </a>
+    </li>
+     <li class="nav-item mb-2">
+      <a class="nav-link text-white" [routerLink]="['/admin/room/reservalist']" (click)="closeMobileSidebar()">
+        <i class="far fa-clock"></i> Reservas
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" [routerLink]="['/admin/users']" (click)="closeMobileSidebar()">
+        <i class="fas fa-users me-2"></i> Usuários
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" [routerLink]="['/admin/perfil']" (click)="closeMobileSidebar()">
+        <i class="fas fa-user me-2"></i> Perfil
+      </a>
+    </li>
+
+    <li class="nav-item mb-2">
+      <a class="nav-link text-white" [routerLink]="['/']" (click)="closeMobileSidebar()">
+        <i class="fas fa-sign-in-alt me-2"></i> Logout
+      </a>
+    </li>
+
+    <!-- <li class="nav-item mt-4 d-none d-lg-block">
+      <button class="btn btn-outline-light w-100" (click)="toggleSidebar()">
+        <i class="fas" [ngClass]="collapsed ? 'fa-chevron-right' : 'fa-chevron-left'"></i>
+      </button>
+    </li> -->
+  </ul>
+</div>
+
+<!-- Conteúdo principal -->
+<div class="content p-4" >
+  <router-outlet></router-outlet>
+</div>
