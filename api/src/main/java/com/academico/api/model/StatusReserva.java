@@ -1,6 +1,6 @@
 package com.academico.api.model;
 
-public enum TipoReserva {
+public enum StatusReserva {
     ATIVA,
     CANCELADA,
     PENDENTE,

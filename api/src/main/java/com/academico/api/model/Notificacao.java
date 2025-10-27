@@ -6,37 +6,45 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Reserva")
 public class Notificacao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_notificacao;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private int id_usuario;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     @Column(name = "mensagem", length = 250, nullable = false)
     private String mensagem;
 
-    @Column(name = "data", nullable = false)
+    @Column(name = "data_envio", nullable = false)
     private LocalDateTime data_envio;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
     private TipoNotificacao tipoNotificacao;
 
-    //Sem construtor aí
+    // Construtor
 
-    //Get e Set
+    public Notificacao() {}
+
+    // Getters e Setters
+
     public int getId_notificacao() {
         return id_notificacao;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public void setId_notificacao(int id_notificacao) {
+        this.id_notificacao = id_notificacao;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getMensagem() {

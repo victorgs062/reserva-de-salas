@@ -3,10 +3,12 @@ package com.academico.api.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Reserva")
 public class Reserva {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_reserva;
@@ -15,32 +17,42 @@ public class Reserva {
     private LocalDateTime data;
 
     @Column(name = "data_hora_inicio", nullable = false)
-    private LocalDateTime data_hora_inicio;
+    private LocalDateTime dataHoraInicio;
 
     @Column(name = "data_hora_fim", nullable = false)
-    private LocalDateTime data_hora_fim;
+    private LocalDateTime dataHoraFim;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private TipoReserva tipoReserva;
+    private StatusReserva status;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private int id_usuario;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "id_sala", nullable = false)
-    private int id_sala;
+    @JoinColumn(name = "id_sala", referencedColumnName = "id_sala", nullable = false)
+    private Sala sala;
 
     @ManyToOne
-    @JoinColumn(name = "id_disciplina", nullable = false)
-    private int id_disciplina;
+    @JoinColumn(name = "id_disciplina", referencedColumnName = "id_disciplina", nullable = false)
+    private Disciplina disciplina;
 
-    //Sem construtor, por enquanto
+    @OneToMany(mappedBy = "reserva")
+    private List<HistoricoReserva> historicos;
 
-    //Get e set
+    // Construtor
+
+    public Reserva() {}
+
+    // Getters e Setters
+
     public int getId_reserva() {
         return id_reserva;
+    }
+
+    public void setId_reserva(int id_reserva) {
+        this.id_reserva = id_reserva;
     }
 
     public LocalDateTime getData() {
@@ -51,51 +63,59 @@ public class Reserva {
         this.data = data;
     }
 
-    public LocalDateTime getData_hora_inicio() {
-        return data_hora_inicio;
+    public LocalDateTime getDataHoraInicio() {
+        return dataHoraInicio;
     }
 
-    public void setData_hora_inicio(LocalDateTime data_hora_inicio) {
-        this.data_hora_inicio = data_hora_inicio;
+    public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
+        this.dataHoraInicio = dataHoraInicio;
     }
 
-    public LocalDateTime getData_hora_fim() {
-        return data_hora_fim;
+    public LocalDateTime getDataHoraFim() {
+        return dataHoraFim;
     }
 
-    public void setData_hora_fim(LocalDateTime data_hora_fim) {
-        this.data_hora_fim = data_hora_fim;
+    public void setDataHoraFim(LocalDateTime dataHoraFim) {
+        this.dataHoraFim = dataHoraFim;
     }
 
-    public TipoReserva getTipoReserva() {
-        return tipoReserva;
+    public StatusReserva getStatus() {
+        return status;
     }
 
-    public void setTipoReserva(TipoReserva tipoReserva) {
-        this.tipoReserva = tipoReserva;
+    public void setStatus(StatusReserva status) {
+        this.status = status;
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public int getId_sala() {
-        return id_sala;
+    public Sala getSala() {
+        return sala;
     }
 
-    public void setId_sala(int id_sala) {
-        this.id_sala = id_sala;
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
-    public int getId_disciplina() {
-        return id_disciplina;
+    public Disciplina getDisciplina() {
+        return disciplina;
     }
 
-    public void setId_disciplina(int id_disciplina) {
-        this.id_disciplina = id_disciplina;
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public List<HistoricoReserva> getHistoricos() {
+        return historicos;
+    }
+
+    public void setHistoricos(List<HistoricoReserva> historicos) {
+        this.historicos = historicos;
     }
 }
