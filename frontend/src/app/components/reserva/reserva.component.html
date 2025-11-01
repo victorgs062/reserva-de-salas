@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0 rounded-4 animate__animated animate__fadeIn">
+        <div class="card-header bg-dark text-white rounded-top-4 py-3">
+          <h4 class="mb-0">
+            <i class="fas fa-calendar-check me-2"></i>Reserva de Sala
+          </h4>
+        </div>
+
+        <div class="card-body p-4">
+          <p class="text-muted mb-4">
+            Escolha a data e o horário desejados para reservar sua sala.
+          </p>
+
+          <mdb-form-control class="mb-4">
+            <input
+              mdbInput
+              type="date"
+              class="form-control"
+              [(ngModel)]="reserva.data"
+              id="dataReserva"
+              required
+            />
+            <label mdbLabel class="form-label" for="dataReserva">Data da reserva</label>
+          </mdb-form-control>
+
+          <mdb-form-control class="mb-4">
+            <input
+              mdbInput
+              type="time"
+              class="form-control"
+              [(ngModel)]="reserva.hora"
+              id="horaReserva"
+              required
+            />
+            <label mdbLabel class="form-label" for="horaReserva">Horário</label>
+          </mdb-form-control>
+
+          <button
+            class="btn btn-dark btn-lg w-100 shadow-sm"
+            (click)="confirmarReserva()"
+            mdbRipple
+          >
+            <i class="fas fa-check-circle me-2"></i>
+            Confirmar Reserva
+          </button>
+        </div>
+
+        <div class="card-footer bg-light text-muted py-2 small">
+          <i class="fas fa-info-circle me-1"></i>As reservas devem ser confirmadas com pelo menos 30 minutos de antecedência.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

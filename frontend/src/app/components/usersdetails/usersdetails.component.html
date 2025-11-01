@@ -1,0 +1,116 @@
+
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card shadow-4 p-4" style="width: 400px;">
+    <h4 class="text-center mb-4">Cadastro de Usuário</h4>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" novalidate>
+    
+    <mdb-form-control class="mb-4 w-100">
+        <input
+          mdbInput
+          type="text"
+          id="nome"
+          name="name"
+          class="form-control"
+          [(ngModel)]="user.name"
+          #nameCtrl="ngModel"
+        />
+        <label mdbLabel for="name" class="form-label">Nome do usuário</label>
+      </mdb-form-control>
+
+      
+     <!-- E-mail -->
+      <mdb-form-control class="mb-4 w-100">
+        <input
+          mdbInput
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          required
+          email
+          [(ngModel)]="user.email"
+          #emailCtrl="ngModel"
+        />
+        <label mdbLabel for="email" class="form-label">E-mail</label>
+      </mdb-form-control>
+
+      <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="text-danger small mb-2">
+        <div *ngIf="emailCtrl.errors?.['required']">O e-mail é obrigatório.</div>
+        <div *ngIf="emailCtrl.errors?.['email']">Digite um e-mail válido.</div>
+      </div>
+
+      <mdb-form-control class="mb-4">
+            <select
+              mdbInput
+              id="type"
+              class="form-select"
+              [(ngModel)]="user.type"
+              required
+              name="type"
+            >
+              <option value="" disabled selected>Tipo da conta</option>
+              <option value="A">Aluno</option>
+              <option value="B">Professor</option>
+              <option value="C">Coordenação</option>
+            </select>
+          </mdb-form-control>
+
+      <!-- Senha -->
+      <mdb-form-control class="mb-4 w-100">
+        <input
+          mdbInput
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          required
+          minlength="6"
+          [(ngModel)]="user.password"
+          #passwordCtrl="ngModel"
+        />
+        <label mdbLabel for="password" class="form-label">Senha</label>
+      </mdb-form-control>
+
+      <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched" class="text-danger small mb-2">
+        <div *ngIf="passwordCtrl.errors?.['required']">A senha é obrigatória.</div>
+        <div *ngIf="passwordCtrl.errors?.['minlength']">A senha deve ter pelo menos 6 caracteres.</div>
+      </div>
+
+      <!-- Confirmar Senha -->
+      <mdb-form-control class="mb-4 w-100">
+        <input
+          mdbInput
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          class="form-control"
+          required
+          [(ngModel)]="confirmPassword"
+          #confirmCtrl="ngModel"
+        />
+        <label mdbLabel for="confirmPassword" class="form-label">Confirmar Senha</label>
+      </mdb-form-control>
+
+      <div *ngIf="confirmPasswordTouched && !passwordsMatch()" class="text-danger small mb-3">
+        As senhas não conferem.
+      </div>
+
+      <!-- Botão -->
+      <button
+
+        mdbRipple
+        mdbBtn
+        color="primary"
+        class="btn btn-danger btn-lg w-100 shadow-sm mt-1"
+        type="submit"
+        [disabled]="registerForm.invalid || !passwordsMatch()"
+      >
+        Cadastrar
+      </button>
+    </form>
+  </div>
+</div>
+
+
