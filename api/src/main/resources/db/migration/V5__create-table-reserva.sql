@@ -3,7 +3,7 @@ CREATE TABLE Reserva (
     data DATETIME NOT NULL,
     data_hora_inicio DATETIME NOT NULL,
     data_hora_fim DATETIME NOT NULL,
-    status ENUM('Ativa', 'Cancelada', 'Pendente', 'Concluida') NOT NULL,
+    status ENUM('ATIVA', 'CANCELADA', 'PENDENTE', 'CONCLUIDA') NOT NULL,
     id_usuario INT NOT NULL,
     id_sala INT NOT NULL,
     id_disciplina INT NOT NULL,

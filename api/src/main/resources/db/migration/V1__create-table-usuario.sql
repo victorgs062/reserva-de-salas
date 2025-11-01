@@ -3,5 +3,5 @@ CREATE TABLE Usuario (
     nome VARCHAR(250) NOT NULL,
     email VARCHAR(250) NOT NULL UNIQUE,
     senha VARCHAR(250) NOT NULL,
-    tipo_usuario ENUM('Professor', 'Aluno', 'Coordenacao') NOT NULL
+    tipo_usuario ENUM('PROFESSOR', 'ALUNO', 'COORDENACAO', 'ADMIN') NOT NULL
 );

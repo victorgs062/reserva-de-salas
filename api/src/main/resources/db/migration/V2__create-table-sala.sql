@@ -3,5 +3,5 @@ CREATE TABLE Sala (
     nome VARCHAR(250) NOT NULL,
     capacidade INT NOT NULL,
     recursos VARCHAR(250) NOT NULL,
-    status ENUM('Ativa', 'Inativa') NOT NULL
+    status ENUM('ATIVA', 'INATIVA') NOT NULL
 );
