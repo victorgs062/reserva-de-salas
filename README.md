@@ -8,8 +8,16 @@ O **Sistema de Reserva de Salas** tem como objetivo otimizar a gestão e utiliza
 - `requisitos/` : documentos contendo os requisitos funcionais, não funcionais e regras de negócio.
 - `modelagem de dados/` : diagramas e esquemas da modelagem de dados
 - `docs/` : documentação do projeto
+- `frontend/` : código-fonte do frontend
+
+## Documentação da API
+
+A API possui documentação interativa disponível via Swagger. Acesse em:
+
+[http://localhost:8085/swagger-ui/index.html#/](http://localhost:8085/swagger-ui/index.html#/)
 
 ## Próximos passos
 
 - Implementar as funcionalidades do sistema.
 - Testar e validar o sistema.
+- Integrar o frontend com a API.
