@@ -22,4 +22,5 @@ public class UsuarioController {
         Usuario usuarioSalvo = usuarioService.criarUsuario(usuario);
         return ResponseEntity.ok(usuarioSalvo);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.academico.api.model;
 
+import com.academico.api.dto.SalaRequestDTO;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -35,7 +36,25 @@ public class Sala {
     // Construtor
 
     public Sala() {}
-    
+
+    public Sala(SalaRequestDTO dto) {
+        this.nome = dto.nome();
+        this.capacidade = dto.capacidade();
+        this.recursos = dto.recursos();
+        this.tipoSala = dto.tipoSala();
+        this.tipoSalaBloco = dto.tipoSalaBloco();
+    }
+
+    // Métodos
+
+    public void atualizar(SalaRequestDTO dto) {
+        this.nome = dto.nome();
+        this.capacidade = dto.capacidade();
+        this.recursos = dto.recursos();
+        this.tipoSala = dto.tipoSala();
+        this.tipoSalaBloco = dto.tipoSalaBloco();
+    }
+
     // Getters e Setters
 
     public int getId_sala() {
