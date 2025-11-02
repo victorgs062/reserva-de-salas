@@ -32,6 +32,22 @@ public class Disciplina {
 
     public Disciplina() {}
 
+    public Disciplina(String nome, int codigo, int qtd_alunos, Usuario professor) {
+        this.nome = nome;
+        this.codigo = codigo;
+        this.qtd_alunos = qtd_alunos;
+        this.professor = professor;
+    }
+
+    // Métodos
+
+    public void atualizarDados(String nome, int codigo, int qtd_alunos, Usuario professor) {
+        this.nome = nome;
+        this.codigo = codigo;
+        this.qtd_alunos = qtd_alunos;
+        this.professor = professor;
+    }
+
     // Getters e Setters
 
     public int getId_disciplina() {
