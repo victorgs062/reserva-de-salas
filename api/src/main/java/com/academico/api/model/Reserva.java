@@ -1,5 +1,7 @@
 package com.academico.api.model;
 
+import com.academico.api.dto.ReservaRequestDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -44,6 +46,28 @@ public class Reserva {
     // Construtor
 
     public Reserva() {}
+
+    public Reserva(ReservaRequestDTO dto, Usuario usuario, Sala sala, Disciplina disciplina) {
+        this.data = dto.data();
+        this.dataHoraInicio = dto.dataHoraInicio();
+        this.dataHoraFim = dto.dataHoraFim();
+        this.status = dto.status();
+        this.usuario = usuario;
+        this.sala = sala;
+        this.disciplina = disciplina;
+    }
+
+    // Metodos
+
+    public void atualizar(ReservaRequestDTO dto, Usuario usuario, Sala sala, Disciplina disciplina) {
+        this.data = dto.data();
+        this.dataHoraInicio = dto.dataHoraInicio();
+        this.dataHoraFim = dto.dataHoraFim();
+        this.status = dto.status();
+        this.usuario = usuario;
+        this.sala = sala;
+        this.disciplina = disciplina;
+    }
 
     // Getters e Setters
 
