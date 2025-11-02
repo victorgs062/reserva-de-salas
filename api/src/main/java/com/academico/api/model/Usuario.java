@@ -48,6 +48,15 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+    // Métodos
+
+    public void atualizar(Usuario novo) {
+        this.nome = novo.getNome();
+        this.email = novo.getEmail();
+        this.senha = novo.getSenha();
+        this.tipoUsuario = novo.getTipoUsuario();
+    }
+
     // Getters e Setters
 
     public int getId_usuario() {
