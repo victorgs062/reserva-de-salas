@@ -5,8 +5,10 @@ import com.academico.api.dto.SalaResponseDTO;
 import com.academico.api.service.SalaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +20,13 @@ public class SalaController {
 
     public SalaController(SalaService salaService){
         this.salaService = salaService;
+    }
+
+    @Operation(summary = "Cria salas a partir de um arquivo Excel")
+    @PostMapping(value = "/importar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> criarComExcel(
+            @RequestParam("file") MultipartFile file) {
+        return ResponseEntity.ok(salaService.criarComExcel(file));
     }
 
     @Operation(summary = "Cria uma nova sala")
