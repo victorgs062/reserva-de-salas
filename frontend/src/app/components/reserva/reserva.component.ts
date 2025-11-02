@@ -15,7 +15,7 @@ import { Room } from '../../models/room';
 })
 export class ReservaComponent {
 
-    room: Room = new Room(0,0, false, '',0)
+    // room: Room = new Room(0,0, false, '',0)
   
     reserva = {
     data: '',
@@ -28,30 +28,30 @@ export class ReservaComponent {
   route = inject(Router)
   router = inject(ActivatedRoute)
 
-  constructor(){
-    let id = this.router.snapshot.params['id']
-    if(id > 0){
-      this.findById(id)
-    }
-  }
+  // constructor(){
+  //   let id = this.router.snapshot.params['id']
+  //   if(id > 0){
+  //     this.findById(id)
+  //   }
+  // }
   
-    findById(id: number){
-    this.roomService.findById(id).subscribe({
-      next: room => {
-        this.room.rent = true
-      },error: err => {
-        alert(err)
-      }
-    })
-  }
+  //   findById(id: number){
+  //   this.roomService.findById(id).subscribe({
+  //     next: room => {
+  //       this.room.rent = true
+  //     },error: err => {
+  //       alert(err)
+  //     }
+  //   })
+  // }
   
-  confirmarReserva() {
-    console.log('Data:', this.reserva.data);
-    console.log('Hora:', this.reserva.hora);
-    this.route.navigate(['/admin/room'])
+  // confirmarReserva() {
+  //   console.log('Data:', this.reserva.data);
+  //   console.log('Hora:', this.reserva.hora);
+  //   this.route.navigate(['/admin/room'])
 
-    alert(`Reserva confirmada para ${this.reserva.data} às ${this.reserva.hora}`);
-  }
+  //   alert(`Reserva confirmada para ${this.reserva.data} às ${this.reserva.hora}`);
+  // }
 
 
 }

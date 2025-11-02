@@ -18,12 +18,12 @@ export const routes: Routes = [
         {path: 'room/new', component: RoomdetailsComponent},
         {path: 'room/edit/:id', component: RoomdetailsComponent},
 
-        {path: 'room/reserva/:id', component: ReservaComponent},
+        {path: 'room/reserva/:id', component: ReservaComponent},//Não esquecer de colocar room/reserva/:id quando a api estiver pronta 
         {path: 'room/reservalist', component: ReservaslistComponent},
 
         {path: 'users', component: UserslistComponent},
         {path: 'users/new', component: UsersdetailsComponent},
-        {path: 'users/edit', component: UsersdetailsComponent},
+        {path: 'users/edit/:id', component: UsersdetailsComponent},
 
         {path: 'perfil', component: PerfilComponent},
 

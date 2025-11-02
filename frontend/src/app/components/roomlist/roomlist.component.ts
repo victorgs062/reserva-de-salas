@@ -11,8 +11,6 @@ import Swal from 'sweetalert2';
 
 
 
-
-
 @Component({
   selector: 'app-roomlist',
   imports: [RouterLink, FormsModule, MdbFormsModule],
@@ -26,11 +24,11 @@ export class RoomlistComponent {
 
   roomService = inject(RoomserviceService)
   constructor(){
-    this.findAll()
+    this.listar()
   }
 
-  findAll(){
-    this.roomService.findAll().subscribe({
+  listar(){
+    this.roomService.listar().subscribe({
       next: lista => {
         this.lista = lista
       },error: err => {
@@ -40,7 +38,7 @@ export class RoomlistComponent {
   }
 
 
-  delete(room: Room){
+  deletar(room: Room){
     Swal.fire({
         title: 'Tem certeza?',
         text: 'Você não poderá recuperar esta sala!',
@@ -51,13 +49,13 @@ export class RoomlistComponent {
         confirmButtonText: 'Excluir',
         cancelButtonText: 'Cancelar'
       }).then((result) => {
-        if(room.id != undefined){
+        if(room.id_sala != undefined){
           if (result.isConfirmed) {
             
-            this.roomService.delete(room.id).subscribe({
+            this.roomService.deletar(room.id_sala).subscribe({
           next: mesage => {
-            Swal.fire('Excluído!', 'A sala foi removido com sucesso.', 'success');;
-            this.findAll()
+            Swal.fire('Excluído!', 'A sala foi removido com sucesso.', 'success');
+            this.listar()
           },error: err => {
             alert(err)
           }
@@ -70,15 +68,16 @@ export class RoomlistComponent {
 
   Buscar(){
     if(this.IdBusca !== null){
-      this.roomService.findById(this.IdBusca).subscribe({
+      this.roomService.buscarPorId(this.IdBusca).subscribe({
         next: retorno => {
           this.lista = [retorno]
         },error: err => {
-          alert("Sala não encontrada")
+          Swal.fire('Ops!', 'Sala não encontrada', 'warning');
+
         }
       })  
     }else{
-      this.findAll()
+      this.listar()
     }
   }
 }

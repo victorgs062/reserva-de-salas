@@ -7,10 +7,10 @@
             <!-- <button [routerLink]="['/admin/users/new']" class="btn btn-outline-dark new"><i class="fas fa-plus"></i></button> -->
             
             <mdb-form-control style="width: 200px;">
-                <input mdbInput type="number" id="typeText" class="form-control " />
+                <input mdbInput type="number" id="typeText" class="form-control " [(ngModel)]="IdBusca"/>
                 <label mdbLabel class="form-label" for="typeText">ID do Usuário</label>
             </mdb-form-control>
-            <button class="btn btn-dark " mdbRipple><i class="fas fa-search"></i></button>  
+            <button class="btn btn-dark " mdbRipple (click)="Buscar()" ><i class="fas fa-search"></i></button>  
         </div>
 
         <!-- <div class="input">
@@ -34,96 +34,39 @@
             <tr>
             <th>Id</th>
             <th>Nome</th>
-            <th>Email</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Tipo de usuário</th>
             <th class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
-  
-            <tr>
             
-                <td>1</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-user-alt"></i>
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">Teste</p>
-                    </div>
-                    </div>
-                </td>
-                <td>Testegmailcom.br</td>
+            @for (usuario of lista; track $index) {
+                <tr>
                 
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/users/edit']">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Excluir</button>
-                </td>    
-                
+                    <td>{{usuario.id_usuario}}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-user-alt"></i>
+                        <div class="ms-1">
+                            <p class="fw-bold mb-1">{{usuario.nome}}</p>
+                        </div>
+                        </div>
+                    </td>
+                    <td class="text-center">{{usuario.email}}</td>
 
-            </tr>
+                    <td class="text-center">{{usuario.tipoUsuario}}</td>
+                    
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/users/edit/', usuario.id_usuario]">Editar</button>
+                        <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="deletar(usuario)">Excluir</button>
+                    </td>    
+                    
 
-                        <tr>
-            
-                <td>2</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-user-alt"></i>
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">João</p>
-                    </div>
-                    </div>
-                </td>
-                <td>João.com.br</td>
-                
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/users/edit']">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Excluir</button>
-                </td>    
-                
-
-            </tr>
-
-            <tr>
-            
-                <td>3</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-user-alt"></i>
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">Carlos</p>
-                    </div>
-                    </div>
-                </td>
-                <td>Carlos email.com.br</td>
-                
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/users/edit']">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Excluir</button>
-                </td>    
-                
-
-            </tr>
+                </tr>
+            }
 
 
-            <tr>
-            
-                <td>4</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <i class="fas fa-user-alt"></i>
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">José Antonio</p>
-                    </div>
-                    </div>
-                </td>
-                <td>Testegmailcom.br</td>
-                
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/users/edit']">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Excluir</button>
-                </td>    
-                
-
-            </tr>
             
 
             </tbody>
