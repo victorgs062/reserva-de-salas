@@ -32,10 +32,10 @@ public class SalaService {
 
         try (InputStream is = file.getInputStream()) {
             Workbook workbook = WorkbookFactory.create(is);
-            Sheet sheet = workbook.getSheetAt(0); // pega a primeira aba
+            Sheet sheet = workbook.getSheetAt(0);
 
             for (Row row : sheet) {
-                if (row.getRowNum() == 0) continue; // pular cabeçalho
+                if (row.getRowNum() == 0) continue;
 
                 String nome = row.getCell(0).getStringCellValue();
                 int capacidade = (int) row.getCell(1).getNumericCellValue();
