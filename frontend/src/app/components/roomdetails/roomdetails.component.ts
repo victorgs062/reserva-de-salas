@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class RoomdetailsComponent {
 
-  room: Room = new Room(0,0, false, '',0)
+  room: Room = new Room(0,'',0, '', '','')
   roomService = inject(RoomserviceService)
 
   route = inject(Router)
@@ -26,12 +26,12 @@ export class RoomdetailsComponent {
   constructor(){
     let id = this.router.snapshot.params['id']
     if(id > 0){
-      this.findById(id)
+      this.buscarPorId(id)
     }
   }
 
-  findById(id: number){
-    this.roomService.findById(id).subscribe({
+  buscarPorId(id: number){
+    this.roomService.buscarPorId(id).subscribe({
       next: room => {
         this.room = room
       },error: err => {
@@ -40,7 +40,7 @@ export class RoomdetailsComponent {
     })
   }
 
-  save(){
+  criar(){
     Swal.fire({
             title: 'Sala salva',
             text: '',
@@ -51,8 +51,8 @@ export class RoomdetailsComponent {
 
           }).then((result) => {
 
-            if(this.room.id !== undefined && this.room.id > 0){
-              this.roomService.update(this.room.id, this.room).subscribe({
+            if(this.room.id_sala !== undefined && this.room.id_sala > 0){
+              this.roomService.atualizar(this.room.id_sala, this.room).subscribe({
                 next: mesagem => {
                   this.route.navigate(['/admin/room'])
                 },error: err => {
@@ -60,7 +60,7 @@ export class RoomdetailsComponent {
                 }
               })
             }else{
-              this.roomService.save(this.room).subscribe({
+              this.roomService.criar(this.room).subscribe({
                 next: mesagem => {
                   
                   this.route.navigate(['/admin/room'])
@@ -75,5 +75,7 @@ export class RoomdetailsComponent {
           })
 
 
-  }
 }
+
+}
+

@@ -13,13 +13,25 @@
             Preencha as informações abaixo para cadastrar uma nova sala.
           </p>
 
+            <mdb-form-control class="mb-4">
+            <input
+              mdbInput
+              type="text"
+              id="capacidade"
+              class="form-control"
+              [(ngModel)]="room.nome"
+              required
+            />
+            <label mdbLabel class="form-label" for="capacidade">Nome da Sala</label>
+          </mdb-form-control>
+
           <mdb-form-control class="mb-4">
             <input
               mdbInput
               type="text"
               id="capacidade"
               class="form-control"
-              [(ngModel)]="room.capacity"
+              [(ngModel)]="room.capacidade"
               required
             />
             <label mdbLabel class="form-label" for="capacidade">Capacidade da Sala</label>
@@ -29,12 +41,28 @@
             <input
               mdbInput
               type="text"
-              id="numero"
+              id="capacidade"
               class="form-control"
-              [(ngModel)]="room.number"
+              [(ngModel)]="room.recursos"
               required
             />
-            <label mdbLabel class="form-label" for="numero">Número da Sala</label>
+            <label mdbLabel class="form-label" for="capacidade">Recursos da Sala</label>
+          </mdb-form-control>
+          
+          
+          <mdb-form-control class="mb-4">
+            <select
+              mdbInput
+              id="block"
+              class="form-select"
+              [(ngModel)]="room.tipoSala"
+              required
+            >
+              <option value="" disabled selected>Status</option>
+              <option value="ATIVA">Ativa</option>
+              <option value="INATIVA">Inativa</option>
+            </select>
+            <!-- <label mdbLabel class="form-label" for="block">Status</label> -->
           </mdb-form-control>
 
           <mdb-form-control class="mb-4">
@@ -42,31 +70,20 @@
               mdbInput
               id="block"
               class="form-select"
-              [(ngModel)]="room.block"
+              [(ngModel)]="room.tipoSalaBloco"
               required
             >
-              <option value="" disabled selected>Selecione o bloco</option>
+              <option value="" disabled selected>Bloco</option>
               <option value="A">Bloco A</option>
               <option value="B">Bloco B</option>
               <option value="C">Bloco C</option>
               <option value="D">Bloco D</option>
+              <option value="E">Bloco D</option>
             </select>
-            <label mdbLabel class="form-label" for="block">Bloco</label>
+            <!-- <label mdbLabel class="form-label" for="block">Bloco</label> -->
           </mdb-form-control>
 
-          <!-- Campo de locação oculto -->
-          <input
-            mdbInput
-            type="hidden"
-            class="form-control"
-            [(ngModel)]="room.rent"
-          />
-
-          <button
-            (click)="save()"
-            class="btn btn-dark btn-lg w-100 shadow-sm mt-3"
-            mdbRipple
-          >
+          <button class="btn btn-dark btn-lg w-100 shadow-sm mt-3" mdbRipple (click)="criar()">
             <i class="fas fa-save me-2"></i>Salvar Sala
           </button>
         </div>

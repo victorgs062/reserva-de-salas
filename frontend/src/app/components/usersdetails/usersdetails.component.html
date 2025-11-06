@@ -4,7 +4,7 @@
   <div class="card shadow-4 p-4" style="width: 400px;">
     <h4 class="text-center mb-4">Cadastro de Usuário</h4>
 
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" novalidate>
+    <form #registerForm="ngForm" novalidate>
     
     <mdb-form-control class="mb-4 w-100">
         <input
@@ -13,7 +13,7 @@
           id="nome"
           name="name"
           class="form-control"
-          [(ngModel)]="user.name"
+          [(ngModel)]="usuarioDto.nome"
           #nameCtrl="ngModel"
         />
         <label mdbLabel for="name" class="form-label">Nome do usuário</label>
@@ -30,7 +30,7 @@
           class="form-control"
           required
           email
-          [(ngModel)]="user.email"
+          [(ngModel)]="usuarioDto.email"
           #emailCtrl="ngModel"
         />
         <label mdbLabel for="email" class="form-label">E-mail</label>
@@ -46,14 +46,15 @@
               mdbInput
               id="type"
               class="form-select"
-              [(ngModel)]="user.type"
+              [(ngModel)]="usuarioDto.tipoUsuario"
               required
               name="type"
             >
               <option value="" disabled selected>Tipo da conta</option>
-              <option value="A">Aluno</option>
-              <option value="B">Professor</option>
-              <option value="C">Coordenação</option>
+              <option value="ALUNO">ALUNO</option>
+              <option value="PROFESSOR">PROFESSOR</option>
+              <option value="COORDENACAO">COORDENAÇÃO</option>
+              <option value="ADMIN">ADMIN</option>
             </select>
           </mdb-form-control>
 
@@ -67,7 +68,7 @@
           class="form-control"
           required
           minlength="6"
-          [(ngModel)]="user.password"
+          [(ngModel)]="usuarioDto.senha"
           #passwordCtrl="ngModel"
         />
         <label mdbLabel for="password" class="form-label">Senha</label>
@@ -79,7 +80,7 @@
       </div>
 
       <!-- Confirmar Senha -->
-      <mdb-form-control class="mb-4 w-100">
+      <!-- <mdb-form-control class="mb-4 w-100">
         <input
           mdbInput
           type="password"
@@ -95,7 +96,7 @@
 
       <div *ngIf="confirmPasswordTouched && !passwordsMatch()" class="text-danger small mb-3">
         As senhas não conferem.
-      </div>
+      </div> -->
 
       <!-- Botão -->
       <button
@@ -105,8 +106,8 @@
         color="primary"
         class="btn btn-danger btn-lg w-100 shadow-sm mt-1"
         type="submit"
-        [disabled]="registerForm.invalid || !passwordsMatch()"
-      >
+        
+        (click)="criar()">
         Cadastrar
       </button>
     </form>

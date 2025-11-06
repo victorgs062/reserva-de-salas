@@ -1,15 +1,19 @@
 export class Room {
-    id?: number
-    capacity!: number
-    rent!: boolean
-    block!: string
-    number!: number
+    id_sala?: number
+    nome!: string
+    capacidade!: number
+    recursos!: string
+    tipoSala!: string
+    tipoSalaBloco!: string
+    
 
-    constructor(id: number, capacity: number, rent: boolean, block: string, number: number){
-        this.id = id,
-        this.capacity = capacity,
-        this.rent = rent,
-        this.block = block,
-        this.number = number   
+    constructor(id_sala: number, nome: string, capacidade: number, recursos: string, tipoSala: string, tipoSalaBloco:string){
+        this.id_sala = id_sala,
+        this.nome = nome,
+        this.capacidade = capacidade,
+        this.recursos = recursos,
+        this.recursos = recursos,  
+        this.tipoSala = tipoSala,  
+        this.tipoSalaBloco = tipoSalaBloco  
     }
 }

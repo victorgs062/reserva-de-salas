@@ -9,32 +9,32 @@ import { Room } from '../models/room';
 export class RoomserviceService {
 
   http = inject(HttpClient)
-  API = "http://localhost:8080/api/room"
+  API = "http://localhost:8085/salas"
 
 
   constructor() { }
 
-  save(room: Room): Observable<String>{
-    return this.http.post<String>(this.API+"/save", room, {responseType: 'text' as 'json'})
+  criar(room: Room): Observable<String>{
+    return this.http.post<String>(this.API, room, {responseType: 'text' as 'json'})
   }
 
-  findAll(): Observable<Room[]>{
-    return this.http.get<Room[]>(this.API+"/findAll")
-  }
-
-
-  delete(id:number): Observable<String>{
-    return this.http.delete<String>(this.API+"/delete/"+id, {responseType: 'text' as 'json'})
+  listar(): Observable<Room[]>{
+    return this.http.get<Room[]>(this.API)
   }
 
 
-  update(id: number, room: Room): Observable<String>{
-    return this.http.put<String>(this.API+"/update/"+id, room, {responseType: 'text' as 'json'})
+  deletar(id:number): Observable<String>{
+    return this.http.delete<String>(this.API+"/"+id, {responseType: 'text' as 'json'})
   }
 
 
-  findById(id: number): Observable<Room>{
-    return this.http.get<Room>(this.API+"/findById/"+id)
+  atualizar(id: number, room: Room): Observable<String>{
+    return this.http.put<String>(this.API+"/"+id, room, {responseType: 'text' as 'json'})
+  }
+
+
+  buscarPorId(id: number): Observable<Room>{
+    return this.http.get<Room>(this.API+"/"+id)
   }
 
 
