@@ -55,4 +55,6 @@ public class UsuarioController {
         boolean deletado = usuarioService.deletar(id);
         return deletado ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+
+
 }

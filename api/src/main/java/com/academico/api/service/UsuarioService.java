@@ -61,4 +61,5 @@ public class UsuarioService {
                 usuario.getTipoUsuario()
         );
     }
+
 }
