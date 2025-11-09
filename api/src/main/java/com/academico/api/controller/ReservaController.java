@@ -5,6 +5,7 @@ import com.academico.api.dto.ReservaResponseDTO;
 import com.academico.api.service.ReservaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class ReservaController {
     @PostMapping
     public ResponseEntity<ReservaResponseDTO> criar(
             @Parameter(description = "Dados da nova reserva")
-            @RequestBody ReservaRequestDTO dto) {
+            @RequestBody @Valid ReservaRequestDTO dto) {
         return ResponseEntity.ok(reservaService.criar(dto));
     }
 
@@ -48,7 +49,7 @@ public class ReservaController {
             @Parameter(description = "ID da reserva a ser atualizada")
             @PathVariable int id,
             @Parameter(description = "Novos dados da reserva")
-            @RequestBody ReservaRequestDTO dto) {
+            @RequestBody @Valid ReservaRequestDTO dto) {
         return ResponseEntity.ok(reservaService.atualizar(id, dto));
     }
 

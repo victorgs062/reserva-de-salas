@@ -5,6 +5,7 @@ import com.academico.api.dto.DisciplinaResponseDTO;
 import com.academico.api.service.DisciplinaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,13 +35,13 @@ public class DisciplinaController {
 
     @Operation(summary = "Cria uma nova disciplina e associa a um professor")
     @PostMapping
-    public ResponseEntity<DisciplinaResponseDTO> criar(@Parameter(description = "Dados da nova disciplina, incluindo o ID do professor responsável") @RequestBody DisciplinaRequestDTO dto) {
+    public ResponseEntity<DisciplinaResponseDTO> criar(@Parameter(description = "Dados da nova disciplina, incluindo o ID do professor responsável") @RequestBody @Valid DisciplinaRequestDTO dto) {
         return ResponseEntity.ok(disciplinaService.criarDisciplina(dto));
     }
 
     @Operation(summary = "Atualiza os dados de uma disciplina existente")
     @PutMapping("/{id}")
-    public ResponseEntity<DisciplinaResponseDTO> atualizar(@Parameter(description = "ID da disciplina que será atualizada") @PathVariable int id, @Parameter(description = "Novos dados da disciplina, incluindo o ID do professor responsável") @RequestBody DisciplinaRequestDTO dto) {
+    public ResponseEntity<DisciplinaResponseDTO> atualizar(@Parameter(description = "ID da disciplina que será atualizada") @PathVariable int id, @Parameter(description = "Novos dados da disciplina, incluindo o ID do professor responsável") @RequestBody @Valid DisciplinaRequestDTO dto) {
         return ResponseEntity.ok(disciplinaService.atualizarDisciplina(id, dto));
     }
 

@@ -5,6 +5,7 @@ import com.academico.api.dto.UsuarioResponseDTO;
 import com.academico.api.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +37,14 @@ public class UsuarioController {
 
     @Operation(summary = "Cria um novo usuário")
     @PostMapping
-    public ResponseEntity<UsuarioResponseDTO> criar(@Parameter(description = "Dados do usuário que será criado") @RequestBody UsuarioRequestDTO dto) {
+    public ResponseEntity<UsuarioResponseDTO> criar(@Parameter(description = "Dados do usuário que será criado") @RequestBody @Valid UsuarioRequestDTO dto) {
         UsuarioResponseDTO criado = usuarioService.criar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(criado);
     }
 
     @Operation(summary = "Atualiza um usuário existente")
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioResponseDTO> atualizar(@Parameter(description = "ID do usuário que será atualizado") @PathVariable int id, @Parameter(description = "Novos dados do usuário") @RequestBody UsuarioRequestDTO dto) {
+    public ResponseEntity<UsuarioResponseDTO> atualizar(@Parameter(description = "ID do usuário que será atualizado") @PathVariable int id, @Parameter(description = "Novos dados do usuário") @RequestBody @Valid UsuarioRequestDTO dto) {
         return usuarioService.atualizar(id, dto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
