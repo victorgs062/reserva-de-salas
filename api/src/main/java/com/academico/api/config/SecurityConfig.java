@@ -17,16 +17,27 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthFilter, AuthenticationProvider authenticationProvider) {
+    public SecurityConfig(
+            JwtAuthenticationFilter jwtAuthFilter,
+            AuthenticationProvider authenticationProvider,
+            JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint
+    ) {
         this.jwtAuthFilter = jwtAuthFilter;
         this.authenticationProvider = authenticationProvider;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                )
+
                 .authorizeHttpRequests(authorize -> authorize
 
                         .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()

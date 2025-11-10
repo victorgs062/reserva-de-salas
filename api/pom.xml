@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.6</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.3.4</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.academico</groupId>
 	<artifactId>api</artifactId>
@@ -73,13 +73,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId>
-			<version>0.12.5</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.5.0</version>
@@ -89,11 +82,9 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.2.3</version>
 		</dependency>
-		
 		<dependency>
-		    <groupId>org.springdoc</groupId>
-		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-		    <version>2.6.0</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
 
