@@ -1,12 +1,16 @@
 package com.academico.api.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +41,6 @@ public class Usuario {
     @OneToMany(mappedBy = "usuarioResponsavel")
     private List<HistoricoReserva> historicosResponsavel;
 
-    // Construtor
-
     public Usuario() {}
 
     public Usuario(String nome, String email, String senha, TipoUsuario tipoUsuario) {
@@ -48,8 +50,6 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    // Métodos
-
     public void atualizar(Usuario novo) {
         this.nome = novo.getNome();
         this.email = novo.getEmail();
@@ -57,77 +57,60 @@ public class Usuario {
         this.tipoUsuario = novo.getTipoUsuario();
     }
 
-    // Getters e Setters
+    public int getId_usuario() { return id_usuario; }
+    public void setId_usuario(int id_usuario) { this.id_usuario = id_usuario; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
+    public TipoUsuario getTipoUsuario() { return tipoUsuario; }
+    public void setTipoUsuario(TipoUsuario tipoUsuario) { this.tipoUsuario = tipoUsuario; }
+    public List<Disciplina> getDisciplinas() { return disciplinas; }
+    public void setDisciplinas(List<Disciplina> disciplinas) { this.disciplinas = disciplinas; }
+    public List<Reserva> getReservas() { return reservas; }
+    public void setReservas(List<Reserva> reservas) { this.reservas = reservas; }
+    public List<Notificacao> getNotificacoes() { return notificacoes; }
+    public void setNotificacoes(List<Notificacao> notificacoes) { this.notificacoes = notificacoes; }
+    public List<HistoricoReserva> getHistoricosResponsavel() { return historicosResponsavel; }
+    public void setHistoricosResponsavel(List<HistoricoReserva> historicosResponsavel) { this.historicosResponsavel = historicosResponsavel; }
 
-    public int getId_usuario() {
-        return id_usuario;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.tipoUsuario == null) {
+            return List.of();
+        }
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.tipoUsuario.name()));
     }
 
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    @Override
+    public String getPassword() {
+        return this.senha;
     }
 
-    public String getNome() {
-        return nome;
+    @Override
+    public String getUsername() {
+        return this.email;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
-    }
-
-    public List<Reserva> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<Reserva> reservas) {
-        this.reservas = reservas;
-    }
-
-    public List<Notificacao> getNotificacoes() {
-        return notificacoes;
-    }
-
-    public void setNotificacoes(List<Notificacao> notificacoes) {
-        this.notificacoes = notificacoes;
-    }
-
-    public List<HistoricoReserva> getHistoricosResponsavel() {
-        return historicosResponsavel;
-    }
-
-    public void setHistoricosResponsavel(List<HistoricoReserva> historicosResponsavel) {
-        this.historicosResponsavel = historicosResponsavel;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
