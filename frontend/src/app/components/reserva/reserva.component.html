@@ -16,30 +16,65 @@
           <mdb-form-control class="mb-4">
             <input
               mdbInput
-              type="date"
+              type="datetime-local"
               class="form-control"
-              [(ngModel)]="reserva.data"
+              [(ngModel)]="reserva.dataHoraInicio"
               id="dataReserva"
               required
             />
-            <label mdbLabel class="form-label" for="dataReserva">Data da reserva</label>
+            <label mdbLabel class="form-label" for="dataReserva">Data inicio</label>
           </mdb-form-control>
 
           <mdb-form-control class="mb-4">
             <input
               mdbInput
-              type="time"
+              type="datetime-local"
               class="form-control"
-              [(ngModel)]="reserva.hora"
+              [(ngModel)]="reserva.dataHoraFim"
               id="horaReserva"
               required
             />
-            <label mdbLabel class="form-label" for="horaReserva">Horário</label>
+            <label mdbLabel class="form-label" for="horaReserva">Data fim</label>
           </mdb-form-control>
+
+        <div class="mb-3">
+        <label for="professor" class="form-label">Professor</label>
+        <select 
+          id="professor"
+          class="form-select"
+          required
+          [(ngModel)]="reservaDto.id_usuario"
+          name="id_usuario">
+          <option value="">Selecione o professor</option>
+          <!-- <option *ngFor="let prof of listaProfessores" [value]="prof.id_usuario">
+            {{ prof.nome }}
+          </option> -->
+          <option value="2">Lucas</option>
+
+        </select>
+      </div>
+
+    <!-- Disciplina -->
+          <div class="mb-3">
+            <label for="disciplina" class="form-label">Disciplina</label>
+            <select 
+              id="disciplina"
+              class="form-select"
+              required
+              [(ngModel)]="reservaDto.id_disciplina"
+              name="id_disciplina">
+              <option value="">Selecione a disciplina</option>
+              <!-- <option *ngFor="let disc of listaDisciplinas" [value]="disc.id_disciplina">
+                {{ disc.nome }}
+              </option> -->
+              <option value="1">Algoritmo</option>
+
+            </select>
+          </div>
 
           <button
             class="btn btn-dark btn-lg w-100 shadow-sm"
-            
+            (click)="criar()"
             mdbRipple
           >
             <i class="fas fa-check-circle me-2"></i>

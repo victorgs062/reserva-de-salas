@@ -9,10 +9,10 @@
             <!-- <button [routerLink]="['/admin/users/new']" class="btn btn-outline-dark new"><i class="fas fa-plus"></i></button> -->
             
             <mdb-form-control style="width: 200px;">
-                <input mdbInput type="number" id="typeText" class="form-control " />
+                <input mdbInput type="number" id="typeText" class="form-control " [(ngModel)]="IdBusca"/>
                 <label mdbLabel class="form-label" for="typeText">ID do Usuário</label>
             </mdb-form-control>
-            <button class="btn btn-dark " mdbRipple><i class="fas fa-search"></i></button>  
+            <button class="btn btn-dark " mdbRipple (click)="Buscar()" ><i class="fas fa-search"></i></button>  
         </div>
 
         <!-- <div class="input">
@@ -37,93 +37,46 @@
                 <th class="text-center">id</th>
                 <th class="text-center">Número</th>
                 <th class="text-center">Bloco</th>
-                <th class="text-center">Data</th>
-                <th class="text-center">Hora</th>
+                <th class="text-center">Data inicio</th>
+                <th class="text-center">Data fim</th>
+                
                 <th class="text-center">Professor</th>
                 <th class="text-center">Matéria</th>
             <th class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
-  
-            <tr>
             
-                <td class="text-center">1</td>
-                <td class="text-center"> 202</td>
-                <td class="text-center">B</td>
-                <td class="text-center">22/10/2025</td>
-                <td class="text-center">20:30 - 22:15</td>
-                <td class="text-center">José Pereira</td>
-                <td class="text-center">Algoritimo</td>
-
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/reserva/',1 ]">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Cancelar</button>
-                </td>    
+            @for (reserva of lista; track $index) {
+                <tr>
                 
+                    <td class="text-center">{{reserva.id_reserva}}</td>
+                    <td class="text-center">{{reserva.nomeSala}}</td>
+                    <td class="text-center">-</td>
+                    <td class="text-center">{{reserva.dataHoraInicio  | date: 'dd/MM/yyyy HH:mm' }}</td>
+                    <td class="text-center">{{reserva.dataHoraFim  | date: 'dd/MM/yyyy HH:mm'}}</td>
+                    <td class="text-center">{{reserva.nomeUsuario}}</td>
+                    <td class="text-center">{{reserva.nomeDisciplina}}</td>
+                    
 
-            </tr>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/reserva/edit/',reserva.id_reserva]">Editar</button>
+                        <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="deletar(reserva)">Cancelar</button>
+                    </td>    
+                    
 
-            <tr>
-            
-                <td class="text-center">2</td>
-                <td class="text-center">204</td>
-                <td class="text-center">B</td>
-                <td class="text-center">23/10/2025</td>
-                <td class="text-center">19:30 - 22:15</td>
-                <td class="text-center">Laura</td>
-                <td class="text-center">Fisiologia</td>
-
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/reserva/',1 ]">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Cancelar</button>
-                </td>      
-                
-
-            </tr>
-
-            <tr>
-            
-                <td class="text-center">3</td>
-                <td class="text-center"> 2</td>
-                <td class="text-center">C</td>
-                <td class="text-center">10/12/2025</td>
-                <td class="text-center">18:55 - 20:30</td>
-                <td class="text-center">Rogerio</td>
-                <td class="text-center">Matemática</td>
-
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/reserva/',1 ]">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Cancelar</button>
-                </td>    
-                
-
-            </tr>
+                </tr>
+            }
 
 
-            <tr>
-            
-                <td class="text-center">4</td>
-                <td class="text-center">105</td>
-                <td class="text-center">C</td>
-                <td class="text-center">22/10/2025 - 22/11/2025</td>
-                <td class="text-center">18:55 - 22:15</td>
-                <td class="text-center">Sergio</td>
-                <td class="text-center">Testes</td>
-
-                <td class="text-center">
-                    <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/reserva/',1 ]">Editar</button>
-                    <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="delete()">Cancelar</button>
-                </td>      
-                
-
-            </tr>
-            
+                  
 
             </tbody>
         </table>
-        <button [routerLink]="['/admin/users/new']" class="btn btn-dark fab-btn" mdbRipple>
+
+        <!-- <button [routerLink]="['/admin/reserva/new']" class="btn btn-dark fab-btn btn-criar" mdbRipple>
             <i class="fas fa-plus"></i>
-        </button>
+        </button> -->
+
     </div>
 </div>

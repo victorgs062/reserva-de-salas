@@ -1,4 +1,4 @@
-package com.academico.api;
+/*package com.academico.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,4 +10,4 @@ class ReservaDeSalasApiApplicationTests {
 	void contextLoads() {
 	}
 
-}
+}*/

@@ -1,21 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common'; //
 
 import Swal from 'sweetalert2';
+import { Reserva } from '../../models/reserva';
+import { ReservaService } from '../../service/reserva.service';
 
 
 @Component({
   selector: 'app-reservaslist',
-  imports: [FormsModule,MdbFormsModule,  RouterModule],
+  imports: [FormsModule,MdbFormsModule,  RouterModule, DatePipe],
   templateUrl: './reservaslist.component.html',
   styleUrl: './reservaslist.component.scss'
 })
 export class ReservaslistComponent {
+  lista: Reserva[] = []
+
+  IdBusca: number | null = null
+
+  reservaService = inject(ReservaService)
+
+  constructor(){
+    this.listarTodos()
+  }
+
+  listarTodos(){
+    this.reservaService.listar().subscribe({
+      next: lista =>{
+        this.lista = lista
+      },error: err =>{
+        alert(err)
+      }
+    })
+  }
+
 
   
-    delete(){
+    deletar(reserva: Reserva){
       Swal.fire({
       title: 'Tem certeza?',
       text: 'Deseja cancelar essa reserva?',
@@ -26,9 +49,36 @@ export class ReservaslistComponent {
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não'
     }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Cancelada!', 'A reserva foi cancela, sala disponivel', 'success');
+      if(reserva.id_reserva !== undefined){
+          if (result.isConfirmed) {
+          Swal.fire('Excluído!', 'A reserva foi excluida, sala dsiponivel.', 'success');
+          this.reservaService.deletar(reserva.id_reserva).subscribe({
+            next: mensagem => {
+              this.listarTodos();
+            },error: err =>{
+              alert(err)
+            }
+          })
+        }
       }
+
     });
     }
+
+
+    Buscar(){
+    if(this.IdBusca !== null){
+      this.reservaService.buscarPorId(this.IdBusca).subscribe({
+        next: retorno => {
+          this.lista = [retorno]
+        },error: err => {
+          Swal.fire('Ops!', 'Reserva não encontrada', 'warning');
+          this.listarTodos()
+
+        }
+      })  
+    }else{
+      this.listarTodos()
+    }
+  }
 }

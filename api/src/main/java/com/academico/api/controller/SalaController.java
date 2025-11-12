@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/salas")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SalaController {
 
     private final SalaService salaService;

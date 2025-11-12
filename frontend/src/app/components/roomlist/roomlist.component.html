@@ -38,7 +38,7 @@
                     <td>{{sala.tipoSala}}</td>                  
                     <td>{{sala.tipoSalaBloco}}</td>                  
                     <td class="text-center">
-                        <button type="button" class="btn btn-outline-success me-1" mdbRipple [routerLink]="['/admin/room/reserva/',1]">Reservar</button>
+                        <button type="button" class="btn btn-outline-success me-1" mdbRipple [routerLink]="['/admin/room/reserva/new/',sala.id_sala]">Reservar</button>
                         <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/edit/', sala.id_sala]"><i class="far fa-edit"></i></button>
                         <button type="button" class="btn btn-outline-danger" mdbRipple (click)="deletar(sala)"><i class="fas fa-trash"></i></button>
                     </td>    

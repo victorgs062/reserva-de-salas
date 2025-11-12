@@ -42,6 +42,7 @@ class AuthResponse {
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin("*")
 public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;

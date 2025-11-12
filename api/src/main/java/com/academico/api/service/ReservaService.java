@@ -95,7 +95,8 @@ public class ReservaService {
                 reserva.getStatus(),
                 reserva.getUsuario().getNome(),
                 reserva.getSala().getNome(),
-                reserva.getDisciplina().getNome()
+                reserva.getDisciplina().getNome(),
+                reserva.getSala().getId_sala()
         );
     }
 }
