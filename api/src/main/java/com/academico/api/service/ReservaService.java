@@ -2,10 +2,7 @@ package com.academico.api.service;
 
 import com.academico.api.dto.ReservaRequestDTO;
 import com.academico.api.dto.ReservaResponseDTO;
-import com.academico.api.model.Disciplina;
-import com.academico.api.model.Reserva;
-import com.academico.api.model.Sala;
-import com.academico.api.model.Usuario;
+import com.academico.api.model.*;
 import com.academico.api.repository.DisciplinaRepository;
 import com.academico.api.repository.ReservaRepository;
 import com.academico.api.repository.SalaRepository;
@@ -41,6 +38,19 @@ public class ReservaService {
                 .orElseThrow(() -> new RuntimeException("Sala não encontrada"));
         Disciplina disciplina = disciplinaRepository.findById(dto.id_disciplina())
                 .orElseThrow(() -> new RuntimeException("Disciplina não encontrada"));
+
+        boolean reservaExistente = reservaRepository.verificarDiaReservado(dto.id_sala(), dto.data(), dto.dataHoraInicio(), dto.dataHoraFim());
+        boolean professorReservado = reservaRepository.verificarProfessor(dto.id_usuario(), dto.data(), dto.dataHoraInicio(), dto.dataHoraFim());
+
+        if(reservaExistente == true){
+            throw new RuntimeException("Sala já reservada!");
+        }
+        if (professorReservado == true){
+            throw new RuntimeException("Professor já reservado para uma aula!");
+        }
+        if (sala.getTipoSala() == TipoSala.INATIVA){
+            throw new RuntimeException("Sala inativa, escolha uma ativa!");
+        }
 
         Reserva reserva = new Reserva(dto, usuario, sala, disciplina);
 

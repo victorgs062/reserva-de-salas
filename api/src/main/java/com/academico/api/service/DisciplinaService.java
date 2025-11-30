@@ -30,6 +30,12 @@ public class DisciplinaService {
                 .collect(Collectors.toList());
     }
 
+    public List<DisciplinaResponseDTO> listarDisciplinaDoProfessor(int idProfessor){
+        return disciplinaRepository.findByProfessorId(idProfessor).stream()
+                .map(this::converterParaResponse)
+                .collect(Collectors.toList());
+    }
+
     public DisciplinaResponseDTO buscarPorId(int id) {
         Disciplina disciplina = disciplinaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Disciplina não encontrada"));

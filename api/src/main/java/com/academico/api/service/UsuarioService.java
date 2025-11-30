@@ -2,6 +2,7 @@ package com.academico.api.service;
 
 import com.academico.api.dto.UsuarioRequestDTO;
 import com.academico.api.dto.UsuarioResponseDTO;
+import com.academico.api.model.TipoUsuario;
 import com.academico.api.model.Usuario;
 import com.academico.api.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +28,11 @@ public class UsuarioService {
                 .stream()
                 .map(this::toResponseDTO)
                 .collect(Collectors.toList());
+    }
+
+    public List<UsuarioResponseDTO> listarProfessores(){
+        return usuarioRepository.findByTipoUsuario(TipoUsuario.PROFESSOR).stream()
+                .map(this::toResponseDTO).toList();
     }
 
     public Optional<UsuarioResponseDTO> obterPorId(int id) {

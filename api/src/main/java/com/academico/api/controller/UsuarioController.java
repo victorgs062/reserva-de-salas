@@ -27,6 +27,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.listarTodos());
     }
 
+    @Operation(summary = "Listar os professores")
+    @GetMapping("/professores")
+    public ResponseEntity<List<UsuarioResponseDTO>> listarProfessores() {
+        return ResponseEntity.ok(usuarioService.listarProfessores());
+    }
+
     @Operation(summary = "Obtém usuário por ID")
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> obterPorId(@Parameter(description = "ID do usuario que deseja consultar") @PathVariable int id) {

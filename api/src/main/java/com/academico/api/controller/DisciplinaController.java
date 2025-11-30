@@ -27,6 +27,12 @@ public class DisciplinaController {
         return ResponseEntity.ok(disciplinaService.listarTodas());
     }
 
+    @Operation(summary = "Listar disciplinas do professor")
+    @GetMapping("/por-professor/{idProfessor}")
+    public ResponseEntity<List<DisciplinaResponseDTO>> listarPorProfessor(@PathVariable int idProfessor){
+        return ResponseEntity.ok(disciplinaService.listarDisciplinaDoProfessor(idProfessor));
+    }
+
     @Operation(summary = "Busca uma disciplina pelo ID")
     @GetMapping("/{id}")
     public ResponseEntity<DisciplinaResponseDTO> buscarPorId(@Parameter(description = "ID da disciplina a ser consultada") @PathVariable int id) {
