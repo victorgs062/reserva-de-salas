@@ -1,7 +1,7 @@
 package com.academico.api.dto;
 
-import com.academico.api.model.StatusReserva;/*
-import com.fasterxml.jackson.annotation.JsonFormat;*/
+import com.academico.api.model.StatusReserva;
+import com.academico.api.model.TipoSalaBloco;
 
 import java.time.LocalDateTime;
 
@@ -13,5 +13,6 @@ public record ReservaResponseDTO(int id_reserva,
                                  String nomeUsuario,
                                  String nomeSala,
                                  String nomeDisciplina,
-                                 int id_sala) {
+                                 int id_sala,
+                                 TipoSalaBloco bloco) {
 }
