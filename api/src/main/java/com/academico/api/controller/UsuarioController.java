@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +51,7 @@ public class UsuarioController {
 
     @Operation(summary = "Atualiza um usuário existente")
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id_usuario")
     public ResponseEntity<UsuarioResponseDTO> atualizar(@Parameter(description = "ID do usuário que será atualizado") @PathVariable int id, @Parameter(description = "Novos dados do usuário") @RequestBody @Valid UsuarioRequestDTO dto) {
         return usuarioService.atualizar(id, dto)
                 .map(ResponseEntity::ok)

@@ -43,7 +43,11 @@ public class UsuarioService {
     public UsuarioResponseDTO criar(UsuarioRequestDTO dto) {
         String senhaCodificada = passwordEncoder.encode(dto.senha());
 
-        Usuario usuario = new Usuario(dto.nome(), dto.email(), senhaCodificada, dto.tipoUsuario());
+        TipoUsuario tipo = dto.tipoUsuario();
+        if(tipo == null){
+            tipo = TipoUsuario.ALUNO;
+        }
+        Usuario usuario = new Usuario(dto.nome(), dto.email(), senhaCodificada, tipo);
 
         Usuario salvo = usuarioRepository.save(usuario);
         return toResponseDTO(salvo);
