@@ -1,0 +1,65 @@
+
+<div class="container">
+
+    <div class="tabela"> 
+        
+        <div class="input">
+            
+
+            <mdb-form-control style="width: 200px;">
+                <input mdbInput type="number" id="typeText" class="form-control" [(ngModel)]="IdBusca"/>
+                <label mdbLabel class="form-label" for="typeText">ID da sala</label>
+            </mdb-form-control>
+            <button class="btn btn-dark " mdbRipple (click)="Buscar()"><i class="fas fa-search"></i></button>  
+            
+
+        </div>
+
+
+        <table class="table align-middle mb-0">
+        <thead>
+            <tr> 
+                <th>id</th>
+                <th>Nome</th>
+                <th>Código</th>
+                <th>Quantidade de alunos</th>
+                <th>Professor</th>
+                @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')){ 
+                <th class="text-center">Ações</th> 
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (disciplina of lista; track $index) {
+                <tr>
+                    <td>{{disciplina.id_disciplina}}</td>
+                    <td>{{disciplina.nome}}</td>
+                    <td>{{disciplina.codigo}}</td>
+                    <td>{{disciplina.qtd_alunos}}</td>
+                    <td>{{disciplina.nomeProfessor}}</td>                  
+
+                    <td class="text-center">
+                        @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')){
+                        <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/disciplina/edit/', disciplina.id_disciplina]"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-outline-danger" 
+                        mdbRipple (click)="deletarDisciplina(disciplina)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        }
+
+                    </td>    
+                </tr>
+            }
+
+            
+            </tbody>
+
+        </table>
+        @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')){
+        <button [routerLink]="['/admin/disciplina/new']" class="btn btn-dark fab-btn" mdbRipple>
+            <i class="fas fa-plus"></i>
+        </button>
+        }
+
+    </div>
+</div>

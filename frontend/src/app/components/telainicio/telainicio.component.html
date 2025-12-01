@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniSalas • Início</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ÁREA PRINCIPAL */
+    .main {
+      margin-left: 0px;
+      padding: 40px 20px;
+      width: 100%;
+      max-width: 1100px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 0.7s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* BANNER */
+    .hero {
+      width: 100%;
+      background: linear-gradient(135deg, #b91c1c, #ef4444);
+      color: white;
+      padding: 60px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin: 0;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 20px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #b91c1c;
+      padding: 14px 28px;
+      font-size: 17px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #fca5a5;
+    }
+
+    /* CARDS DE APRESENTAÇÃO */
+    .cards {
+      margin-top: 40px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      justify-items: center;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+      text-align: left;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #b91c1c;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .main {
+        padding: 30px 15px;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .main {
+        padding: 20px 10px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main">
+    <div class="hero">
+      <h1>Bem-vindo ao UniSalas</h1>
+      <p>Gerencie salas, horários e reservas da faculdade de forma simples, rápida e moderna.</p>
+      
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3><i class="fas fa-door-open"></i> Cadastro de Salas</h3>
+        <p>Organize salas, blocos, capacidades e recursos.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="far fa-clock"></i> Reservas Inteligentes</h3>
+        <p>Controle agendamentos, disponibilidades e conflitos automaticamente.</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-users"></i> Controle e segurança</h3>
+        <p>Gerencie professores, alunos e permissões com segurança.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

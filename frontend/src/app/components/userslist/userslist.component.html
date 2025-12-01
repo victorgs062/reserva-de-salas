@@ -4,7 +4,6 @@
 
         <div class="input">
    
-            <!-- <button [routerLink]="['/admin/users/new']" class="btn btn-outline-dark new"><i class="fas fa-plus"></i></button> -->
             
             <mdb-form-control style="width: 200px;">
                 <input mdbInput type="number" id="typeText" class="form-control " [(ngModel)]="IdBusca"/>
@@ -13,22 +12,6 @@
             <button class="btn btn-dark " mdbRipple (click)="Buscar()" ><i class="fas fa-search"></i></button>  
         </div>
 
-        <!-- <div class="input">
-            <div class="search-box">
-                <mdb-form-control class="search-input">
-                <input mdbInput type="number" id="userId" class="form-control" />
-                <label mdbLabel class="form-label" for="userId">Buscar ID do Usuário</label>
-                </mdb-form-control>
-                <button class="btn btn-dark search-btn" mdbRipple>
-                <i class="fas fa-search"></i>
-                </button>
-            </div>
-
-
-        </div> -->
-
-        
-        <!-- <input type="number" placeholder="Id do cliente" > -->
         <table class="table align-middle mb-0">
         <thead>
             <tr>
@@ -36,7 +19,9 @@
             <th>Nome</th>
             <th class="text-center">Email</th>
             <th class="text-center">Tipo de usuário</th>
+            @if(auth.hasRole('ROLE_ADMIN')){
             <th class="text-center">Ações</th>
+            }
             </tr>
         </thead>
         <tbody>
@@ -56,18 +41,17 @@
                     <td class="text-center">{{usuario.email}}</td>
 
                     <td class="text-center">{{usuario.tipoUsuario}}</td>
-                    
+                    @if(auth.hasRole('ROLE_ADMIN')){
                     <td class="text-center">
                         <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/users/edit/', usuario.id_usuario]">Editar</button>
-                        <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="deletar(usuario)">Excluir</button>
+                        
+                            <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="deletar(usuario)">Excluir</button>
+                        
                     </td>    
-                    
+                }
 
                 </tr>
             }
-
-
-            
 
             </tbody>
         </table>

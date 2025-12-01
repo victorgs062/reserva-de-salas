@@ -10,7 +10,7 @@
             
             <mdb-form-control style="width: 200px;">
                 <input mdbInput type="number" id="typeText" class="form-control " [(ngModel)]="IdBusca"/>
-                <label mdbLabel class="form-label" for="typeText">ID do Usuário</label>
+                <label mdbLabel class="form-label" for="typeText">ID da reserva</label>
             </mdb-form-control>
             <button class="btn btn-dark " mdbRipple (click)="Buscar()" ><i class="fas fa-search"></i></button>  
         </div>
@@ -27,7 +27,7 @@
                 <th class="text-center">Professor</th>
                 <th class="text-center">Matéria</th>
                 
-                @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_PROFESSOR') || auth.hasRole('ROLE_COORDENACAO')){
+                @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')){
 
                 <th class="text-center">Ações</th>
                 }

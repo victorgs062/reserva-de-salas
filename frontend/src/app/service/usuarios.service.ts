@@ -38,5 +38,9 @@ export class UsuariosService {
     return this.http.get<Usuarios>(this.API+"/"+id)
   }
 
+  listarProfessores() {
+    return this.http.get<any[]>(this.API+"/professores");
+  }
+
 
 }

@@ -7,6 +7,8 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 
 
 import Swal from 'sweetalert2';
+import { Usuarios } from '../../models/usuarios';
+import { UsuariosService } from '../../service/usuarios.service';
 
 
 @Component({
@@ -16,6 +18,8 @@ import Swal from 'sweetalert2';
   styleUrl: './roomdetails.component.scss'
 })
 export class RoomdetailsComponent {
+
+
 
   room: Room = new Room(0,'',0, '', '','')
   roomService = inject(RoomserviceService)

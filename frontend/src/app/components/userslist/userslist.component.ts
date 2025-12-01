@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Usuarios } from '../../models/usuarios';
 import { UsuariosService } from '../../service/usuarios.service';
+import { AuthService } from '../../service/authservice.service';
 
 
 @Component({
@@ -16,6 +17,8 @@ import { UsuariosService } from '../../service/usuarios.service';
 })
 export class UserslistComponent {
   lista: Usuarios[] = []
+
+  auth = inject(AuthService)
 
   IdBusca: number | null = null
 

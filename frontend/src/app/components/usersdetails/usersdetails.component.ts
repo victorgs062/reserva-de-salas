@@ -84,7 +84,8 @@ criar(){
           Swal.fire('Atualizado!', 'O cadastro do usuário foi atualizado com sucesso.', 'success');
           this.route.navigate(['/admin/users'])
         },error: err => {
-          alert(JSON.stringify(err))
+            Swal.fire('Ops!', 'Verifique suas permissões', 'error');
+
         }
       })
     }else{
@@ -93,7 +94,8 @@ criar(){
           Swal.fire('Salvo!', 'O usuário foi criado com sucesso.', 'success');
           this.route.navigate(['/admin/users'])
         },error: err => {
-          alert(JSON.stringify(err))
+            Swal.fire('Ops!', 'Verifique as informações preenchidas', 'error');
+
         }
     })
     }

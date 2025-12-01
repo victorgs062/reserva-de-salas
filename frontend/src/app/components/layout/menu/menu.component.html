@@ -17,7 +17,7 @@
 
   <ul class="nav flex-column">
     <li class="nav-item mb-2">
-      <a class="nav-link text-white" [routerLink]="['/admin/']" (click)="closeMobileSidebar()">
+      <a class="nav-link text-white" [routerLink]="['/admin/inicio']" (click)="closeMobileSidebar()">
         <i class="fas fa-home me-2"></i> Início
       </a>
     </li>
@@ -40,7 +40,7 @@
       </a>
     </li>
 
-    @if (auth.hasRole('ROLE_ADMIN')) {
+    @if (auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')) {
       <li class="nav-item mb-2">
         <a class="nav-link text-white" [routerLink]="['/admin/users']" (click)="closeMobileSidebar()">
           <i class="fas fa-users me-2"></i> Usuários
@@ -48,11 +48,11 @@
       </li>
     }
 
-    <li class="nav-item mb-2">
+    <!-- <li class="nav-item mb-2">
       <a class="nav-link text-white" [routerLink]="['/admin/perfil']" (click)="closeMobileSidebar()">
         <i class="fas fa-user me-2"></i> Perfil
       </a>
-    </li>
+    </li> -->
 
     <li class="nav-item mb-2">
       <a class="nav-link text-white" [routerLink]="['/']" (click)="closeMobileSidebar()">

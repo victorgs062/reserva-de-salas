@@ -49,7 +49,10 @@
           <!-- <option *ngFor="let prof of listaProfessores" [value]="prof.id_usuario">
             {{ prof.nome }}
           </option> -->
-          <option value="2">Lucas</option>
+          @for (professor of professores; track $index) {
+          <option [value]="professor.id_usuario">{{professor.nome}}</option>
+
+          }
 
         </select>
       </div>
@@ -63,11 +66,13 @@
               required
               [(ngModel)]="reservaDto.id_disciplina"
               name="id_disciplina">
+              
               <option value="">Selecione a disciplina</option>
-              <!-- <option *ngFor="let disc of listaDisciplinas" [value]="disc.id_disciplina">
-                {{ disc.nome }}
-              </option> -->
-              <option value="1">Algoritmo</option>
+
+              @for (disciplina of disciplinas; track $index) {
+
+              <option [value]="disciplina.id_disciplina">{{disciplina.nome}}</option>
+              }
 
             </select>
           </div>

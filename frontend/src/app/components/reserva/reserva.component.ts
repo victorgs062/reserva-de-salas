@@ -9,6 +9,10 @@
   import { ReservaDTO } from '../../models/reserva-dto';
 
   import Swal from 'sweetalert2';
+import { Usuarios } from '../../models/usuarios';
+import { UsuariosService } from '../../service/usuarios.service';
+import { Disciplina } from '../../models/disciplina';
+import { DisciplinaService } from '../../service/disciplina.service';
 
   @Component({
     selector: 'app-reserva',
@@ -18,6 +22,11 @@
   })
   export class ReservaComponent {
 
+  professores: Usuarios[] = [];
+  usuarioService = inject(UsuariosService);
+
+  disciplinas: Disciplina[] = []
+  disciplinaService = inject(DisciplinaService)
 
     reserva: Reserva = new Reserva()
     reservaDto: ReservaDTO = new ReservaDTO()
@@ -42,7 +51,10 @@
       }
     });
   }
-  constructor() {}
+  constructor() {
+          this.carregarProfessores();
+          this.carregarDisciplinas();
+  }
 
     buscarPorId(id: number){
       this.reservaService.buscarPorId(id).subscribe({
@@ -56,14 +68,17 @@
           dataHoraInicio: reserva.dataHoraInicio,
           dataHoraFim: reserva.dataHoraFim,
           status: reserva.status,
-          id_usuario: 2,
-          id_disciplina: 1,
+          id_usuario: reserva.usuario?.id_usuario ?? 0 ,
+          id_disciplina: reserva.disciplina?.id_disciplina ?? 0,
           id_sala: reserva.id_sala
         };
         },error: err => {
           alert(JSON.stringify(err))
         }
       })
+
+
+
     }
 
 
@@ -74,8 +89,8 @@ criar() {
   this.reservaDto.dataHoraInicio = this.reserva.dataHoraInicio;
   this.reservaDto.dataHoraFim = this.reserva.dataHoraFim;
   this.reservaDto.status = 'ATIVA';
-  this.reservaDto.id_usuario = 2;
-  this.reservaDto.id_disciplina = 1;
+  this.reservaDto.id_usuario = this.reservaDto.id_usuario;
+  this.reservaDto.id_disciplina = this.reservaDto.id_disciplina;
 
   if (!this.reservaDto.id_sala && this.salaId) {
     this.reservaDto.id_sala = this.salaId;
@@ -105,6 +120,30 @@ criar() {
   }
 }
 
-  }
+carregarProfessores() {
+  this.usuarioService.listarProfessores().subscribe({
+    next: lista => {
+      this.professores = lista;
+      console.log('Professores carregados:', lista);
+    },
+    error: err => {
+      console.error('Erro ao carregar professores:', err);
+    }
+  });
+}
+
+carregarDisciplinas() {
+  this.disciplinaService.listarTodas().subscribe({
+    next: lista => {
+      this.disciplinas = lista;
+    },
+    error: err => {
+      console.error('Erro ao carregar disciplinas:', err);
+    }
+  });
+}
+
+
+}
 
 

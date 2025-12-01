@@ -14,5 +14,7 @@ public record ReservaResponseDTO(int id_reserva,
                                  String nomeSala,
                                  String nomeDisciplina,
                                  int id_sala,
-                                 TipoSalaBloco bloco) {
+                                 TipoSalaBloco bloco,
+                                 int id_disciplina,
+                                 int id_usuario) {
 }
