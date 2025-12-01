@@ -26,16 +26,28 @@
         <i class="fas fa-door-open me-2"></i> Salas
       </a>
     </li>
-     <li class="nav-item mb-2">
-      <a class="nav-link text-white" [routerLink]="['/admin/room/reservalist']" (click)="closeMobileSidebar()">
-        <i class="far fa-clock"></i> Reservas
-      </a>
-    </li>
+    @if (auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_PROFESSOR') || auth.hasRole('ROLE_COORDENACAO')) {
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" [routerLink]="['/admin/room/reservalist']" (click)="closeMobileSidebar()">
+          <i class="far fa-clock"></i> Reservas
+        </a>
+      </li>
+    }
+
     <li class="nav-item mb-2">
-      <a class="nav-link text-white" [routerLink]="['/admin/users']" (click)="closeMobileSidebar()">
-        <i class="fas fa-users me-2"></i> Usuários
+      <a class="nav-link text-white" [routerLink]="['/admin/disciplina']" (click)="closeMobileSidebar()">
+        <i class="fas fa-book"></i> Disciplinas
       </a>
     </li>
+
+    @if (auth.hasRole('ROLE_ADMIN')) {
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" [routerLink]="['/admin/users']" (click)="closeMobileSidebar()">
+          <i class="fas fa-users me-2"></i> Usuários
+        </a>
+      </li>
+    }
+
     <li class="nav-item mb-2">
       <a class="nav-link text-white" [routerLink]="['/admin/perfil']" (click)="closeMobileSidebar()">
         <i class="fas fa-user me-2"></i> Perfil

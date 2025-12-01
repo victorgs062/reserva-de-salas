@@ -25,7 +25,9 @@
                 <th>Recursos</th>
                 <th>Status</th>
                 <th>Bloco</th>
-                <th class="text-center">Ações</th> <!-- Centraliza o título -->
+                @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_PROFESSOR') || auth.hasRole('ROLE_COORDENACAO')) {
+                <th class="text-center">Ações</th> 
+                }
             </tr>
         </thead>
         <tbody>
@@ -36,12 +38,20 @@
                     <td>{{sala.capacidade}}</td>
                     <td>{{sala.recursos}}</td>
                     <td>{{sala.tipoSala}}</td>                  
-                    <td>{{sala.tipoSalaBloco}}</td>                  
+                    <td>{{sala.tipoSalaBloco}}</td>  
+                   
                     <td class="text-center">
+                        @if(auth.hasRole('ROLE_PROFESSOR') || auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')) {
                         <button type="button" class="btn btn-outline-success me-1" mdbRipple [routerLink]="['/admin/room/reserva/new/',sala.id_sala]">Reservar</button>
+                        }
+                         @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')) {
+
                         <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/edit/', sala.id_sala]"><i class="far fa-edit"></i></button>
                         <button type="button" class="btn btn-outline-danger" mdbRipple (click)="deletar(sala)"><i class="fas fa-trash"></i></button>
-                    </td>    
+                    }              
+
+                    </td>  
+  
                 </tr>
             }
 
@@ -49,8 +59,10 @@
             </tbody>
 
         </table>
-        <button [routerLink]="['/admin/room/new']" class="btn btn-dark fab-btn" mdbRipple>
-            <i class="fas fa-plus"></i>
-        </button>
+        @if(auth.hasRole('ROLE_ADMIN')) {
+            <button [routerLink]="['/admin/room/new']" class="btn btn-dark fab-btn" mdbRipple>
+                <i class="fas fa-plus"></i>
+            </button>
+        }
     </div>
 </div>

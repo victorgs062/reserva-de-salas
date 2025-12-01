@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../service/authservice.service'
+
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
+
+  auth = inject(AuthService)
 
 
 //  collapsed = false; // Para recolher no desktop

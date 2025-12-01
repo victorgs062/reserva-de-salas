@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("disciplinas")
+@CrossOrigin("*")
 public class DisciplinaController {
 
     private final DisciplinaService disciplinaService;

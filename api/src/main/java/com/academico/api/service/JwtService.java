@@ -36,14 +36,23 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        return buildToken(new HashMap<>(), userDetails, jwtExpiration);
+        //return buildToken(new HashMap<>(), userDetails, jwtExpiration);
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", userDetails.getAuthorities());
+
+        return buildToken(claims, userDetails, jwtExpiration);
     }
 
     public String generateRefreshToken(UserDetails userDetails) {
-        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
+        //return buildToken(new HashMap<>(), userDetails, refreshExpiration);
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", userDetails.getAuthorities());
+
+        return buildToken(claims, userDetails, refreshExpiration);
+
     }
 
-    private String buildToken(
+    /*private String buildToken(
             Map<String, Object> extraClaims,
             UserDetails userDetails,
             long expiration
@@ -55,7 +64,23 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignInKey())
                 .compact();
-    }
+    }*/
+    
+    private String buildToken(Map<String, Object> extraClaims,
+            UserDetails userDetails,
+            long expiration) {
+
+			extraClaims.put("roles", userDetails.getAuthorities());
+			
+			return Jwts.builder()
+			.claims(extraClaims)
+			.subject(userDetails.getUsername())
+			.issuedAt(new Date(System.currentTimeMillis()))
+			.expiration(new Date(System.currentTimeMillis() + expiration))
+			.signWith(getSignInKey())
+			.compact();
+	}
+    
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);

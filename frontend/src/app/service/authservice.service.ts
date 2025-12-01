@@ -4,6 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { tap, Observable } from 'rxjs';
 import { API_URL } from '../app.config';
 
+
+import {jwtDecode} from 'jwt-decode';
+
+
 interface AuthResponse {
   accessToken: string;
   refreshToken: string;
@@ -14,7 +18,7 @@ interface AuthResponse {
 })
 
 export class AuthService {
-  private baseUrl = `${API_URL}/api/auth`;
+  private baseUrl = `http://localhost:8085/api/auth`;
 
   constructor(private http: HttpClient) {}
 
@@ -49,5 +53,28 @@ export class AuthService {
   private setTokens(res: AuthResponse) {
     localStorage.setItem('accessToken', res.accessToken);
     localStorage.setItem('refreshToken', res.refreshToken);
+  }
+
+
+getUserRoles(): string[] {
+  const token = this.getAccessToken();
+  if (!token) return [];
+
+  const decoded: any = jwtDecode(token);
+
+  const roles = [];
+
+  if (decoded.role) {
+    roles.push(...decoded.role.map((r: any) => r.authority));
+  }
+
+  if (decoded.roles) {
+    roles.push(...decoded.roles.map((r: any) => r.authority));
+  }
+
+  return roles;
+}
+  hasRole(role: string): boolean {
+    return this.getUserRoles().includes(role);
   }
 }

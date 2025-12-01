@@ -22,7 +22,7 @@ public class CorsConfig {
         config.setExposedHeaders(List.of("Authorization"));
         config.setAllowCredentials(true);
 
-        // ✅ use a versão servlet, não a reativa
+        // use a versão servlet, não a reativa
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
 

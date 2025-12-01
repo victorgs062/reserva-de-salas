@@ -7,6 +7,8 @@ import { DatePipe } from '@angular/common'; //
 import Swal from 'sweetalert2';
 import { Reserva } from '../../models/reserva';
 import { ReservaService } from '../../service/reserva.service';
+import { AuthService } from '../../service/authservice.service';
+
 
 
 @Component({
@@ -17,6 +19,7 @@ import { ReservaService } from '../../service/reserva.service';
 })
 export class ReservaslistComponent {
   lista: Reserva[] = []
+  auth = inject(AuthService)
 
   IdBusca: number | null = null
 
@@ -31,7 +34,7 @@ export class ReservaslistComponent {
       next: lista =>{
         this.lista = lista
       },error: err =>{
-        alert(err)
+        alert(JSON.stringify(err))
       }
     })
   }

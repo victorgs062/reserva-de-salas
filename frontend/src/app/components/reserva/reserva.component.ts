@@ -87,7 +87,10 @@ criar() {
         Swal.fire('Atualizado!', 'Reserva atualizada com sucesso.', 'success');
         this.route.navigate(['/admin/room/reservalist']);
       },
-      error: err => alert(JSON.stringify(err))
+      error: err => {
+        alert(JSON.stringify(err))
+
+      }
     });
   } else {
     this.reservaService.criar(this.reservaDto).subscribe({
@@ -95,7 +98,9 @@ criar() {
         Swal.fire('Criado!', 'Reserva criada com sucesso.', 'success');
         this.route.navigate(['/admin/room/reservalist']);
       },
-      error: err => alert(JSON.stringify(err))
+      error: err => {
+        Swal.fire('Ops!', 'Data ou status da sala são inválidos para concluir a reserva', 'error');
+      }
     });
   }
 }

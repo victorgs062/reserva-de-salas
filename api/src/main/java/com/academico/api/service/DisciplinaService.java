@@ -90,7 +90,8 @@ public class DisciplinaService {
                 disciplina.getNome(),
                 disciplina.getCodigo(),
                 disciplina.getQtd_alunos(),
-                disciplina.getProfessor().getId_usuario()
+                disciplina.getProfessor().getId_usuario(),
+                disciplina.getProfessor().getNome()
         );
     }
 }

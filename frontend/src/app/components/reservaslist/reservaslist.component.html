@@ -15,22 +15,6 @@
             <button class="btn btn-dark " mdbRipple (click)="Buscar()" ><i class="fas fa-search"></i></button>  
         </div>
 
-        <!-- <div class="input">
-            <div class="search-box">
-                <mdb-form-control class="search-input">
-                <input mdbInput type="number" id="userId" class="form-control" />
-                <label mdbLabel class="form-label" for="userId">Buscar ID do Usuário</label>
-                </mdb-form-control>
-                <button class="btn btn-dark search-btn" mdbRipple>
-                <i class="fas fa-search"></i>
-                </button>
-            </div>
-
-
-        </div> -->
-
-        
-        <!-- <input type="number" placeholder="Id do cliente" > -->
         <table class="table align-middle mb-0">
         <thead>
             <tr>
@@ -42,7 +26,11 @@
                 
                 <th class="text-center">Professor</th>
                 <th class="text-center">Matéria</th>
-            <th class="text-center">Ações</th>
+                
+                @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_PROFESSOR') || auth.hasRole('ROLE_COORDENACAO')){
+
+                <th class="text-center">Ações</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -58,11 +46,13 @@
                     <td class="text-center">{{reserva.nomeUsuario}}</td>
                     <td class="text-center">{{reserva.nomeDisciplina}}</td>
                     
-
+                    @if(auth.hasRole('ROLE_ADMIN') || auth.hasRole('ROLE_COORDENACAO')){
                     <td class="text-center">
                         <button type="button" class="btn btn-outline-primary me-1" mdbRipple [routerLink]="['/admin/room/reserva/edit/',reserva.id_reserva]">Editar</button>
                         <button type="button" class="btn btn-outline-danger me-1" mdbRipple (click)="deletar(reserva)">Cancelar</button>
-                    </td>    
+                    </td>
+                    }
+    
                     
 
                 </tr>

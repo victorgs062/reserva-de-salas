@@ -7,6 +7,9 @@ import { RouterLink } from "@angular/router";
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 
+import { AuthService } from '../../service/authservice.service';
+
+
 import Swal from 'sweetalert2';
 
 
@@ -21,6 +24,8 @@ export class RoomlistComponent {
   IdBusca: number | null = null
 
   lista: Room[] = []
+
+  auth = inject(AuthService)
 
   roomService = inject(RoomserviceService)
   constructor(){
@@ -51,13 +56,12 @@ export class RoomlistComponent {
       }).then((result) => {
         if(room.id_sala != undefined){
           if (result.isConfirmed) {
-            
             this.roomService.deletar(room.id_sala).subscribe({
           next: mesage => {
             Swal.fire('Excluído!', 'A sala foi removido com sucesso.', 'success');
             this.listar()
           },error: err => {
-            alert(err)
+            Swal.fire('Ops!', 'Não foi possível excluir a sala verifique se há reservas vinculadas.', 'error');
           }
         })
       }
