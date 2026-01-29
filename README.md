@@ -1,22 +1,51 @@
-# Sistema de Reserva de Salas
+# 🚀 UniSalas – Sistema de Reserva de Salas
 
-O **Sistema de Reserva de Salas** tem como objetivo otimizar a gestão e utilização dos espaços acadêmicos da instituição, permitindo reservas antecipadas, consulta em tempo real e relatórios de ocupação.
+O **UniSalas** é um sistema de reserva de salas acadêmicas desenvolvido para otimizar a gestão e a utilização dos espaços da instituição.  
+A aplicação permite **reservas antecipadas**, **consulta de disponibilidade em tempo real** e **relatórios de ocupação**, garantindo melhor organização e evitando conflitos de uso.
 
-## Estrutura do repositório
+O projeto é composto por uma **API REST** e um **frontend web**, seguindo boas práticas de arquitetura em camadas, segurança e manutenibilidade, com foco em portfólio profissional.
 
-- `api/` : código-fonte da API Spring Boot, incluindo controllers, services, repositories e configuração do projeto.
-- `modelagem de dados/` : diagramas e esquemas da modelagem de dados
-- `docs/` : documentação do projeto
-- `frontend/` : código-fonte do frontend
+---
 
-## Documentação da API
+## 🏗️ Estrutura do Repositório
 
-A API possui documentação interativa disponível via Swagger. Acesse em:
+- `api/`  
+  Código-fonte da API desenvolvida em **Spring Boot**, contendo controllers, services, repositories, segurança e configurações.
 
-[http://localhost:8085/swagger-ui/index.html#/](http://localhost:8085/swagger-ui/index.html#/)
+- `modelagem de dados/`  
+  Diagramas e esquemas da modelagem do banco de dados.
 
-## Próximos passos
+- `docs/`  
+  Documentação técnica e funcional do projeto.
 
-- Implementar as funcionalidades do sistema.
-- Testar e validar o sistema.
-- Integrar o frontend com a API.
+- `frontend/`  
+  Aplicação frontend desenvolvida em **Angular**, responsável pela interface com o usuário e consumo da API.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+- Java 21
+- Spring Boot
+- Spring Data JPA
+- Spring Security + JWT
+- MySQL
+- Flyway
+- Swagger
+- Maven
+
+### Frontend
+- Angular
+- TypeScript
+- HTML5
+- CSS / SCSS
+
+---
+
+## 📄 Documentação da API
+
+A API possui documentação interativa gerada pelo **Swagger**, permitindo visualizar e testar todos os endpoints disponíveis.
+
+Acesso local:  
+http://localhost:8085/swagger-ui/index.html#/
