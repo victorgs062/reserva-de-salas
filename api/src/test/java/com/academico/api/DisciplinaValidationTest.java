@@ -1,4 +1,4 @@
-package com.academico.api.controller;
+package com.academico.api;
 
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -7,15 +7,28 @@ import org.junit.jupiter.api.Test;
 import com.academico.api.dto.DisciplinaRequestDTO;
 import static org.junit.jupiter.api.Assertions.*;
 
+//TESTE UNITÁRIO
+//
+//Esta classe testa as validações do DTO DisciplinaRequestDTO.
+//
+//Tipo de teste:
+//Teste Unitário: valida apenas as regras do DTO, sem subir contexto Spring
+//
+//Objetivo:
+//Garantir que as regras de validação (Bean Validation) estejam funcionando corretamente
+//Evitar entrada de dados inválidos na aplicação
 public class DisciplinaValidationTest {
 
+    // Responsável por executar as validações do DTO
     private Validator validator;
 
+    // Inicializa o validator antes de cada teste
     @BeforeEach
     void setUp(){
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
+    // Testa se o nome vazio é invalidado corretamente
     @Test
     void nomeVazio(){
         DisciplinaRequestDTO dto = new DisciplinaRequestDTO(
@@ -27,12 +40,16 @@ public class DisciplinaValidationTest {
 
         var invalidacao = validator.validate(dto);
 
+        // Deve existir erro de validação
         assertFalse(invalidacao.isEmpty());
+
+        // Verifica mensagem específica
         assertTrue(
                 invalidacao.stream().anyMatch(v -> v.getMessage().equals("O nome é obrigatório!"))
         );
     }
 
+    // Testa se o nome ultrapassando o limite permitido é rejeitado
     @Test
     void nomeMaiorQPermitido(){
         DisciplinaRequestDTO dto = new DisciplinaRequestDTO(
@@ -50,6 +67,7 @@ public class DisciplinaValidationTest {
         );
     }
 
+    // Testa se o código da disciplina não pode ser nulo
     @Test
     void codigoNulo(){
         DisciplinaRequestDTO dto = new DisciplinaRequestDTO(
@@ -67,6 +85,7 @@ public class DisciplinaValidationTest {
         );
     }
 
+    // Testa se a quantidade de alunos não pode ser nula
     @Test
     void alunoNulo(){
         DisciplinaRequestDTO dto = new DisciplinaRequestDTO(
@@ -84,6 +103,7 @@ public class DisciplinaValidationTest {
         );
     }
 
+    // Testa se a quantidade de alunos não pode ser negativa
     @Test
     void alunoNegativo(){
         DisciplinaRequestDTO dto = new DisciplinaRequestDTO(
@@ -101,6 +121,7 @@ public class DisciplinaValidationTest {
         );
     }
 
+    // Testa se o professor responsável não pode ser nulo
     @Test
     void professorVazio(){
         DisciplinaRequestDTO dto = new DisciplinaRequestDTO(

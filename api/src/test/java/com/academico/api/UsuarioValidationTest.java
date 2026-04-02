@@ -1,4 +1,4 @@
-package com.academico.api.controller;
+package com.academico.api;
 
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -8,17 +8,34 @@ import com.academico.api.dto.UsuarioRequestDTO;
 import com.academico.api.model.TipoUsuario;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+// TESTE UNITÁRIO
+//
+// Esta classe realiza testes unitários focados na validação do DTO (UsuarioRequestDTO),
+// utilizando Bean Validation (jakarta.validation).
+//
+// Tipo de teste:
+// Teste Unitário: testa apenas uma pequena parte do sistema (validação do DTO),
+// sem subir servidor, banco de dados ou contexto Spring.
+//
+// Objetivo:
+// Garantir que as regras de validação (anotações como @NotBlank, @Size, @Email, etc.)
+// estejam funcionando corretamente.
 public class UsuarioValidationTest {
 
+    // Responsável por executar as validações do DTO
     private Validator validator;
 
+    // Inicializa o validator antes de cada teste
     @BeforeEach
     void setUp(){
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
+    // Testa se o nome vazio é invalidado corretamente.
     @Test
     void nomeVazio(){
+        // Cria um DTO com nome vazio
         UsuarioRequestDTO dto = new UsuarioRequestDTO(
           "",
           "gg21@gmail.com",
@@ -26,14 +43,19 @@ public class UsuarioValidationTest {
           TipoUsuario.ALUNO
         );
 
+        // Executa a validação
         var invalidacao = validator.validate(dto);
 
+        // Verifica se houve erro
         assertFalse(invalidacao.isEmpty());
+
+        // Verifica se a mensagem de erro esperada foi retornada
         assertTrue(
                 invalidacao.stream().anyMatch(v -> v.getMessage().equals("O nome é obrigatório!"))
         );
     }
 
+    // Testa se o nome acima do tamanho permitido é rejeitado.
     @Test
     void nomeMaiorQPermitido(){
         UsuarioRequestDTO dto = new UsuarioRequestDTO(
@@ -51,6 +73,7 @@ public class UsuarioValidationTest {
         );
     }
 
+    // Testa validação de formato de e-mail inválido.
     @Test
     void emailInvalido(){
         UsuarioRequestDTO dto = new UsuarioRequestDTO(
@@ -68,6 +91,7 @@ public class UsuarioValidationTest {
         );
     }
 
+    // Testa e-mail vazio.
     @Test
     void emailVazio(){
         UsuarioRequestDTO dto = new UsuarioRequestDTO(
@@ -85,6 +109,7 @@ public class UsuarioValidationTest {
         );
     }
 
+    // Testa e-mail com tamanho maior que o permitido.
     @Test
     void emailMaiorQPermitido(){
         UsuarioRequestDTO dto = new UsuarioRequestDTO(
@@ -102,6 +127,7 @@ public class UsuarioValidationTest {
         );
     }
 
+    // Testa senha vazia.
     @Test
     void senhaVazia(){
         UsuarioRequestDTO dto = new UsuarioRequestDTO(
@@ -119,6 +145,7 @@ public class UsuarioValidationTest {
         );
     }
 
+    // Testa senha maior que o permitido.
     @Test
     void senhaMaiorQPermitido(){
         UsuarioRequestDTO dto = new UsuarioRequestDTO(
@@ -136,6 +163,7 @@ public class UsuarioValidationTest {
         );
     }
 
+    // Testa quando o tipo de usuário não é informado (null).
     @Test
     void tipoUsuarioVazio(){
         UsuarioRequestDTO dto = new UsuarioRequestDTO(

@@ -1,4 +1,4 @@
-package com.academico.api.controller;
+package com.academico.api;
 
 
 import jakarta.validation.Validation;
@@ -10,17 +10,23 @@ import com.academico.api.model.TipoSalaBloco;
 import com.academico.api.model.TipoSala;
 import static org.junit.jupiter.api.Assertions.*;
 
+// Teste unitário responsável por validar as regras do DTO SalaRequestDTO
+// Garante que os dados de entrada estejam corretos antes de chegar na lógica de negócio
 public class SalaValidationTest {
 
+    // Objeto responsável por executar as validações do DTO
     private Validator validator;
 
+    // Metodo executado antes de cada teste para inicializar o validator
     @BeforeEach
     void setUp(){
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
+    // Testa se o nome da sala não pode ser vazio
     @Test
     void nomeVazio(){
+        // Cria um DTO com nome vazio
         SalaRequestDTO dto = new SalaRequestDTO(
                 "",
                 60,
@@ -31,12 +37,16 @@ public class SalaValidationTest {
 
         var invalidacao = validator.validate(dto);
 
+        // Verifica se houve erro
         assertFalse(invalidacao.isEmpty());
+
+        // Verifica se a mensagem esperada foi retornada
         assertTrue(
                 invalidacao.stream().anyMatch(v -> v.getMessage().equals("O nome é obrigatório!"))
         );
     }
 
+    // Testa se o nome maior que o permitido é invalidado
     @Test
     void nomeMaiorQPermitodo(){
         SalaRequestDTO dto = new SalaRequestDTO(
@@ -55,6 +65,7 @@ public class SalaValidationTest {
         );
     }
 
+    // Testa se a capacidade não pode ser negativa
     @Test
     void capacidadeNegativa(){
         SalaRequestDTO dto = new SalaRequestDTO(
@@ -73,6 +84,7 @@ public class SalaValidationTest {
         );
     }
 
+    // Testa se a capacidade é obrigatória (não pode ser null)
     @Test
     void capacidadeNula(){
         SalaRequestDTO dto = new SalaRequestDTO(
@@ -91,6 +103,7 @@ public class SalaValidationTest {
 
     }
 
+    // Testa se os recursos não podem ser vazios
     @Test
     void recursosVazio(){
         SalaRequestDTO dto = new SalaRequestDTO(
@@ -110,6 +123,7 @@ public class SalaValidationTest {
 
     }
 
+    // Testa se os recursos ultrapassam o tamanho permitido
     @Test
     void recursosMaiorQPermitido(){
         SalaRequestDTO dto = new SalaRequestDTO(
@@ -128,6 +142,7 @@ public class SalaValidationTest {
         );
     }
 
+    // Testa se o tipo da sala é obrigatório
     @Test
     void tipoSalaVazio(){
         SalaRequestDTO dto = new SalaRequestDTO(
@@ -146,6 +161,7 @@ public class SalaValidationTest {
         );
     }
 
+    // Testa se o bloco da sala é obrigatório
     @Test
     void tipoSalaBlocoVazio(){
         SalaRequestDTO dto = new SalaRequestDTO(

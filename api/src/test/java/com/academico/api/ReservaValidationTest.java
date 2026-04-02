@@ -1,4 +1,4 @@
-package com.academico.api.controller;
+package com.academico.api;
 
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -11,15 +11,20 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Teste unitário responsável por validar as regras do DTO ReservaRequestDTO
+// Garante que reservas não sejam criadas com dados inválidos
 public class ReservaValidationTest {
 
+    // Responsável por executar as validações do DTO
     private Validator validator;
 
+    // Inicializa o validator antes de cada teste
     @BeforeEach
     void setUp(){
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
+    // Testa se a data da reserva é obrigatória
     @Test
     void dataVazia(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -34,12 +39,16 @@ public class ReservaValidationTest {
 
         var invalidacao = validator.validate(dto);
 
+        // Deve haver erro
         assertFalse(invalidacao.isEmpty());
+
+        // Verifica mensagem
         assertTrue(
                 invalidacao.stream().anyMatch(v -> v.getMessage().equals("Defina a data!"))
         );
     }
 
+    // Testa se a data não pode ser anterior ao dia atual
     @Test
     void dataAnterior(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -60,6 +69,7 @@ public class ReservaValidationTest {
         );
     }
 
+    // Testa se a data/hora de início é obrigatória
     @Test
     void dataHoraInicioVazia(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -80,6 +90,7 @@ public class ReservaValidationTest {
         );
     }
 
+    // Testa se a data/hora de início não pode ser anterior ao momento atual
     @Test
     void dataHoraInicioAnterior(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -100,6 +111,7 @@ public class ReservaValidationTest {
         );
     }
 
+    // Testa se a data/hora de fim é obrigatória
     @Test
     void dataHoraFimVazia(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -121,6 +133,7 @@ public class ReservaValidationTest {
 
     }
 
+    // Testa se a data/hora de fim não pode ser anterior ao momento atual
     @Test
     void dataHoraFimAnterior(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -142,6 +155,7 @@ public class ReservaValidationTest {
 
     }
 
+    // Testa se o status da reserva é obrigatório
     @Test
     void statusVazio(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -163,6 +177,7 @@ public class ReservaValidationTest {
 
     }
 
+    // Testa se o usuário é obrigatório
     @Test
     void usuarioVazio(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -184,6 +199,7 @@ public class ReservaValidationTest {
 
     }
 
+    // Testa se a sala é obrigatória
     @Test
     void salaVazia(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
@@ -205,6 +221,7 @@ public class ReservaValidationTest {
 
     }
 
+    // Testa se a disciplina é obrigatória
     @Test
     void disciplinaVazia(){
         ReservaRequestDTO dto = new ReservaRequestDTO(
