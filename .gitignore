@@ -37,3 +37,10 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+
+# Documentação ( arquivos temporarios )
+
+~$*.docx
+*.tmp
+docs/~$*
+docs/*.tmp
