@@ -103,7 +103,9 @@
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.33.0</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

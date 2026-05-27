@@ -9,7 +9,7 @@ public class HelloWorldSelenium {
     @Test
     public void hello(){
         WebDriver driver = new ChromeDriver();
-        driver.navigate().to("https://www.google.com.br/index.html");
+        driver.navigate().to("http://localhost:4200/login");
         driver.quit();
     }
 }
