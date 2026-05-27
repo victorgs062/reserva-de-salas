@@ -21,6 +21,8 @@ public class LoginTest {
         WebDriver driver = new ChromeDriver();
 
         try {
+            //
+            driver.manage().window().maximize();
 
             // acessa tela de login
             driver.navigate().to("http://localhost:4200/login");
